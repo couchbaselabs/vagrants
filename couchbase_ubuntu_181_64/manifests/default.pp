@@ -2,7 +2,7 @@
 # Install and Run Couchbase Server
 # ===
 
-$version = "2.0.1"
+$version = "1.8.1"
 $filename = "couchbase-server-enterprise_x86_64_$version.deb"
 
 # Download the Sources
