@@ -13,8 +13,8 @@ $filename = "$stem$suffix"
 # Download the Sources
 exec { "couchbase-server-source":
     command => "/usr/bin/wget http://packages.couchbase.com/releases/$version/$filename",
-    cwd => "/home/vagrant/",
-    creates => "/home/vagrant/$filename",
+    cwd => "/vagrant/",
+    creates => "/vagrant/$filename",
     before => Package['couchbase-server']
 }
 
@@ -34,7 +34,7 @@ package { "couchbase-server":
         CentOS => rpm,
     },
     ensure => installed,
-    source => "/home/vagrant/$filename",
+    source => "/vagrant/$filename",
     require => Package["libssl0.9.8"]
 }
 
