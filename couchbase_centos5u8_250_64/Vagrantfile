@@ -19,12 +19,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision :puppet
 
   # Download the initial box from this url
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-58-x64.box"
+  config.vm.box_url = "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
 
   # Provision Config for each of the nodes
   1.upto(num_nodes) do |num|
     config.vm.define "node#{num}" do |node|
-      node.vm.box = "centos64_x64"
+      node.vm.box = "centos5u8_x64"
       node.vm.network :private_network, :ip => ip_addr_base % num
       node.vm.provider "virtualbox" do |v|
         v.name = "Couchbase Server #{version} Centos5u8 Node #{num}"

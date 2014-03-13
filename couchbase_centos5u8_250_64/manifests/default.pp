@@ -3,7 +3,7 @@
 # ===
 
 $version = "2.5.0"
-$stem = "couchbase-server-enterprise_${version}_x86_64"
+$stem = "couchbase-server-enterprise_${version}_x86_64_openssl098"
 $suffix = $operatingsystem ? {
     Ubuntu => ".deb",
     CentOS => ".rpm",
@@ -18,15 +18,6 @@ exec { "couchbase-server-source":
     before => Package['couchbase-server']
 }
 
-# Install libssl dependency
-package { "libssl0.9.8":
-    name => $operatingsystem ? {
-        Ubuntu => "libssl0.98",
-        CentOS => "openssl098e",
-    },
-    ensure => present
-}
-
 # Install Couchbase Server
 package { "couchbase-server":
     provider => $operatingsystem ? {
@@ -35,7 +26,6 @@ package { "couchbase-server":
     },
     ensure => installed,
     source => "/vagrant/$filename",
-    require => Package["libssl0.9.8"]
 }
 
 # Ensure firewall is off (some CentOS images have firewall on by default).
