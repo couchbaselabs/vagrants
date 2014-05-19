@@ -30,7 +30,8 @@ package { "couchbase-server":
 
 # Ensure firewall is off (some CentOS images have firewall on by default).
 service { "iptables":
-    enable => false,
+    	ensure => "stopped"
+	enable => false,
 }
 
 # Ensure the service is running
