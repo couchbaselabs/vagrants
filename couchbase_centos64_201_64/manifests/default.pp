@@ -40,9 +40,8 @@ package { "couchbase-server":
 
 # Ensure firewall rules are flushed (brute force, some CentOS images have firewall
 # on by default).
-exec { "disable-firewall":
-    command => "/sbin/iptables --flush",
-    before => Service["couchbase-server"]
+service { "iptables":
+    enable => false
 }
 
 # Ensure the service is running
