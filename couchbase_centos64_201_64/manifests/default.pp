@@ -47,6 +47,7 @@ exec { "disable-firewall":
 }
 
 service { "iptables":
+    ensure => "stopped",
     enable => false
 }
 
