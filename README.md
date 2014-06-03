@@ -1,8 +1,29 @@
 # Vagrant files for Couchbase Server VMS
 
+## Starting a Couchbase cluster
+
 If vagrant and virtualbox are installed, it is very easy to get started with a 4 node cluster.
 
 See this blog post for more info: http://nitschinger.at/A-Couchbase-Cluster-in-Minutes-with-Vagrant-and-Puppet
 
 Just change into the directories and call "vagrant up". Everything else will be done for you, but you need
 internet access.
+
+## Building Couchbase
+
+The subdirectory `cbdev_ubuntu_1204` contains a Vagrant configuration for
+building Couchbase from source; for Ubuntu 12.04. With this you should be able to build with the following:
+
+*outside on host*:
+
+    cd cbdev_ubuntu_1204
+    vagrant up; vagrant ssh
+
+*inside vagrant VM*:
+
+    mkdir couchbase; cd couchbase
+    repo init -u git://github.com/couchbase/manifest -m branch-master.xml
+    repo sync
+    make
+
+See https://github.com/couchbase/tlm/ more information on building Couchbase from source.
