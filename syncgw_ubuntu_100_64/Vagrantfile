@@ -1,0 +1,34 @@
+# Flexible Couchbase Sync Gateway Vagrant file
+Vagrant.configure("2") do |config|
+
+  # Server version
+  version = "100"
+
+  # Number of nodes to provision
+  num_nodes = 1 
+
+  # IP Address Base for private network
+  ip_addr_base = "192.168.30.10%d"
+
+  # Define Number of RAM for each node
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--memory", 1024]
+  end
+
+  # Provision the server itself with puppet
+  config.vm.provision :puppet
+
+  # Download the initial box from this url
+  config.vm.box = "hashicorp/precise64"
+
+  # Provision Config for each of the nodes
+  1.upto(num_nodes) do |num|
+    config.vm.define "node#{num}" do |node|
+      node.vm.network :private_network, :ip => ip_addr_base % num
+      node.vm.provider "virtualbox" do |v|
+        v.name = "Couchbase SyncGW #{version} Precise Node #{num}"
+      end
+    end
+  end
+
+end
