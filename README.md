@@ -25,6 +25,7 @@ building Couchbase from source; for Ubuntu 12.04. With this you should be able t
     repo init -u git://github.com/couchbase/manifest -m branch-master.xml
     repo sync
     make
+    cd ns_server; ./cluster_run --nodes=1
 
 To build a specific release, change the `branch-master.xml` file to be one of the release files from the [manifests repository][1]. Look for filenames of the form `rel-X.x.x.xml`. 
 e.g. to build 2.5.1 from source you would change the above `repo init` command to be:
