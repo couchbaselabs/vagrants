@@ -2,7 +2,7 @@
 # Install and Run Couchbase Server
 # ===
 
-$version = "3.0.0-692-rel"
+$version = "3.0.0-916-rel"
 $stem = "couchbase-server-enterprise_centos6_x86_64_${version}"
 $suffix = $operatingsystem ? {
     Ubuntu => ".deb",
