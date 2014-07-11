@@ -2,7 +2,7 @@
 # Install and Run Couchbase Server
 # ===
 
-$version = "3.0.0-916-rel"
+$version = "3.0.0-918-rel"
 $stem = "couchbase-server-enterprise_centos6_x86_64_${version}"
 $suffix = $operatingsystem ? {
     Ubuntu => ".deb",
@@ -12,7 +12,7 @@ $filename = "$stem$suffix"
 
 # Download the Sources
 exec { "couchbase-server-source":
-    command => "/usr/bin/wget http://builder.hq.couchbase.com/get/$filename",
+    command => "/usr/bin/wget http://packages.northscale.com/latestbuilds/3.0.0/$filename",
     cwd => "/vagrant/",
     creates => "/vagrant/$filename",
     before => Package['couchbase-server']
