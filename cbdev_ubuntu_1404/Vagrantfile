@@ -23,6 +23,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.cpus = 2
   end
 
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.memory = 2048
+    libvirt.cpus = 2
+  end
+
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
