@@ -1,0 +1,6 @@
+# URL base for the Couchbase download URL
+url="http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"
+
+# Read and execute the top level Vagrantfile
+external = File.read '../../Vagrantfile'
+eval external

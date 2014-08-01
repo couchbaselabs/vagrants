@@ -1,0 +1,3 @@
+# Read and execute the top level Vagrantfile
+external = File.read '../../Vagrantfile'
+eval external

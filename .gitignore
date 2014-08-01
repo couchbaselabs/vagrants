@@ -1,3 +1,4 @@
 *.rpm
 *.deb
 .vagrant
+.DS_Store
