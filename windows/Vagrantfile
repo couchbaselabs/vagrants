@@ -2,5 +2,6 @@
 version = "???"
 
 # Read and execute the top level Vagrantfile
+Dir.chdir File.dirname(__FILE__)
 external = File.read '../Vagrantfile'
 eval external

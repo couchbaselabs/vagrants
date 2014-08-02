@@ -2,7 +2,7 @@
 # See README.md for usage instructions
 
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
-
+begin
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
   "ubuntu10" => "1",
   "ubuntu12" => "2",
@@ -40,6 +40,7 @@ end
 # Couchbase Server Version download links
 couchbase_download_links = {
   "2.0.1" => "http://packages.couchbase.com/releases/2.0.1/couchbase-server-enterprise_x86_64_2.0.1",
+  "2.5.1" => {"ubuntu10" => "http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"},
   "3.0.0-973-rel" => {"centos6"  => "http://packages.northscale.com/latestbuilds/3.0.0/couchbase-server-enterprise_centos6_x86_64_#{version}",
                       "ubuntu10" => "http://packages.northscale.com/latestbuilds/3.0.0/couchbase-server-enterprise_x86_64_#{version}",
                       "ubuntu12" => "http://packages.northscale.com/latestbuilds/3.0.0/couchbase-server-enterprise_ubuntu_1204_x86_64_#{version}"
@@ -58,16 +59,12 @@ else
 end
 
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
-if (defined?(url)).nil?
-  if couchbase_download_links.has_key?(version)
-    if version == "3.0.0-973-rel"
-      url = couchbase_download_links[version][operating_system]
-    else
-      url = couchbase_download_links[version]
-    end
-  else
-    url= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
-  end
+if couchbase_download_links[version][operating_system].length > 1
+    url = couchbase_download_links[version][operating_system]
+elsif couchbase_download_links[version] > 1
+    url = couchbase_download_links[version]
+else
+  url= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 end
 
 # Check to see if a custom ip address has been given, if not generate one
@@ -127,4 +124,6 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+end
+rescue
 end
