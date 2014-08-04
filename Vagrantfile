@@ -2,7 +2,7 @@
 # See README.md for usage instructions
 
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
-#begin
+begin
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
   "ubuntu10" => "1",
   "ubuntu12" => "2",
@@ -54,7 +54,7 @@ default_number_of_nodes = 4
 default_RAM_in_MB = 1024
 default_number_of_cpus = 1
 
-### DO NOT EDIT BELOW THIS LINE ###
+### DO NOT EDIT BELOW THIS LINE
 
 # Number of nodes to provision
 unless ENV['VAGRANT_NODES'].nil? || ENV['VAGRANT_NODES'] == 0
@@ -149,5 +149,5 @@ Vagrant.configure("2") do |config|
     end
   end
 end
-#rescue
-#end
+rescue
+end
