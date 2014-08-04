@@ -134,7 +134,7 @@ libvirt. For example, the virtualbox settings:
       vb.cpus = 2
     end
 
-Will require an equivilent stanza for libvirt:
+Will require an equivilent, additional stanza for libvirt adding to the Vagrantfile:
 
     config.vm.provider :libvirt do |libvirt|
       libvirt.memory = 2048
@@ -142,7 +142,7 @@ Will require an equivilent stanza for libvirt:
     end
 
 See the [Domain Specific Options](https://github.com/pradels/vagrant-libvirt#domain-specific-options)
-in the vagrant-libvirt docuementation for a complete list of possible
+in the vagrant-libvirt documentation for a complete list of possible
 options.
 
 ##### Running with KVM
