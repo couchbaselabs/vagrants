@@ -26,7 +26,9 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
                },
-  "centos6"  => "puppetlabs/centos-6.5-64-puppet",
+  "centos6"  => {"box_name" => "centos64",
+                 "box_url"  => "puppetlabs/centos-6.5-64-puppet",
+                },
   "centos7"  => "hfm4/centos7",
   "windows"  => "emyl/win2008r2",
 }
@@ -48,6 +50,8 @@ couchbase_download_links = {
 }
 
 default_number_of_nodes = 4
+default_RAM_in_MB = 1024
+default_number_of_cpus = 1
 
 ### DO NOT EDIT BELOW THIS LINE ###
 
@@ -58,14 +62,27 @@ else
   num_nodes = default_number_of_nodes
 end
 
-# Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
-if couchbase_download_links[version][operating_system].length > 1
-    url = couchbase_download_links[version][operating_system]
-elsif couchbase_download_links[version] > 1
-    url = couchbase_download_links[version]
+unless ENV['VAGRANT_CPUS'].nil? || ENV['VAGRANT_CPUS'] == 0
+  num_cpus = ENV['VAGRANT_CPUS'].to_i
 else
-  url= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
+  num_cpus = default_number_of_cpus
 end
+
+unless ENV['VAGRANT_RAM'].nil? || ENV['VAGRANT_RAM'] == 0
+  ram_in_MB = ENV['VAGRANT_RAM'].to_i
+else
+  ram_in_MB = default_RAM_in_MB
+end
+
+# Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
+if couchbase_download_links.has_key?(version)
+  if couchbase_download_links[version].has_key?(operating_system)
+    url = couchbase_download_links[version][operating_system]
+  elsif couchbase_download_links[version].is_a?(String)
+    url = couchbase_download_links[version]
+  end
+end
+url ||= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 
 # Check to see if a custom ip address has been given, if not generate one
 if (defined?(ip)).nil?
@@ -81,9 +98,15 @@ end
 ### Start the vagrant configuration ###
 Vagrant.configure("2") do |config|
 
-  # Define Number of RAM for each node
-  config.vm.provider :virtualbox do |v|
-    v.customize ["modifyvm", :id, "--memory", 1024]
+  # Define VM properties for each node (for both virtualbox and
+  # libvirt providers).
+  config.vm.provider :virtualbox do |vb|
+    vb.memory = ram_in_MB
+    vb.cpus = num_cpus
+  end
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.memory = ram_in_MB
+    libvirt.cpus = num_cpus
   end
 
   # Define the vagrant box download location
