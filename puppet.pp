@@ -31,6 +31,12 @@ else{
       ensure => "stopped",
       enable => false
     }
+
+  # Install pkgconfig (not all CentOS base boxes have it).
+  package { "pkgconfig":
+    ensure => present,
+    before => Package["couchbase-server"]
+  }
 }
 
 # Install libssl dependency
