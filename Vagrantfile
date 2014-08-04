@@ -59,13 +59,14 @@ else
 end
 
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
-if couchbase_download_links[version][operating_system].length > 1
+if couchbase_download_links.has_key?(version)
+  if couchbase_download_links[version].has_key?(operating_system)
     url = couchbase_download_links[version][operating_system]
-elsif couchbase_download_links[version] > 1
+  elsif couchbase_download_links[version].is_a?(String)
     url = couchbase_download_links[version]
-else
-  url= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
+  end
 end
+url ||= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 
 # Check to see if a custom ip address has been given, if not generate one
 if (defined?(ip)).nil?
