@@ -2,7 +2,7 @@
 # See README.md for usage instructions
 
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
-begin
+#begin
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
   "ubuntu10" => "1",
   "ubuntu12" => "2",
@@ -26,7 +26,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
                },
-  "centos6"  => {"box_name" => "centos64",
+  "centos6"  => {"box_name" => "puppetlabs/centos-6.5-64-puppet",
                  "box_url"  => "puppetlabs/centos-6.5-64-puppet",
                 },
   "centos7"  => "hfm4/centos7",
@@ -41,6 +41,7 @@ end
 
 # Couchbase Server Version download links
 couchbase_download_links = {
+  "1.8.1" => "http://packages.couchbase.com/releases/1.8.1/couchbase-server-enterprise_x86_64_1.8.1",
   "2.0.1" => "http://packages.couchbase.com/releases/2.0.1/couchbase-server-enterprise_x86_64_2.0.1",
   "2.5.1" => {"ubuntu10" => "http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"},
   "3.0.0-973-rel" => {"centos6"  => "http://packages.northscale.com/latestbuilds/3.0.0/couchbase-server-enterprise_centos6_x86_64_#{version}",
@@ -76,10 +77,10 @@ end
 
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
 if couchbase_download_links.has_key?(version)
-  if couchbase_download_links[version].has_key?(operating_system)
-    url = couchbase_download_links[version][operating_system]
-  elsif couchbase_download_links[version].is_a?(String)
+  if couchbase_download_links[version].is_a?(String)
     url = couchbase_download_links[version]
+  elsif couchbase_download_links[version].has_key?(operating_system)
+    url = couchbase_download_links[version][operating_system]
   end
 end
 url ||= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
@@ -148,5 +149,5 @@ Vagrant.configure("2") do |config|
     end
   end
 end
-rescue
-end
+#rescue
+#end
