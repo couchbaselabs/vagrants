@@ -15,7 +15,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "2.5.0"    => "5",
   "2.5.1"    => "1",
   "3.0.0-973-rel" => "3",
-  "???"      => "9"
+  "???"      => "9",
+  "cbdev"    => "9"
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",
@@ -35,9 +36,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
 
 # Collect the names of the working directory and its parent (os and cb version)
 operating_system = File.basename(Dir.getwd)
-if (defined?(version)).nil?
-  version  = File.basename(File.expand_path('..'))
-end
+version  ||= File.basename(File.expand_path('..'))
 
 # Couchbase Server Version download links
 couchbase_download_links = {
@@ -85,6 +84,8 @@ if couchbase_download_links.has_key?(version)
 end
 url ||= "http://packages.couchbase.com/releases/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 
+puppet_location ||= "../.."
+
 # Check to see if a custom ip address has been given, if not generate one
 if (defined?(ip)).nil?
   base = "192.168."
@@ -126,7 +127,7 @@ Vagrant.configure("2") do |config|
   if !(operating_system.include?("win"))
     # Provision the server itself with puppet
     config.vm.provision "puppet" do |puppet|
-      puppet.manifests_path = "../../" # Define a custom location and name for the puppet file
+      puppet.manifests_path = puppet_location # Define a custom location and name for the puppet file
       puppet.manifest_file = "puppet.pp"
       puppet.facter = { # Pass variables to puppet
         "version" => version, # Couchbase Server version
