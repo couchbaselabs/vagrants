@@ -10,7 +10,7 @@ See this blog post for more info: http://nitschinger.at/A-Couchbase-Cluster-in-M
 Just change into the appropriate directory and call `vagrant up`. Everything else will be done for you, but you need
 internet access.
 
-Additionally, you can specify the number of nodes to provision from the command line by using the environment variable VAGRANT_NODES. For example: `VAGRANT_NODES=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default. `VAGRANT_CPUS` and `VAGRANT_RAM`s are also available. 
+Additionally, you can specify the number of nodes to provision from the command line by using the environment variable VAGRANT_NODES. For example: `VAGRANT_NODES=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default. `VAGRANT_CPUS` and `VAGRANT_RAM` are also available.
 
 **IP Ranges:**
 
