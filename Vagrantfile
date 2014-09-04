@@ -92,8 +92,8 @@ if (defined?(ip)).nil?
 end
 
 # Check to see if the vagrant command given was 'up', if so print a handy dialogue
-if ARGV[0] == "up"
-  puts "\e[32m=== Created #{num_nodes} node(s) on #{operating_system} and cb version #{version} ==="
+if ARGV[0] == "up" && !ARGV[1]
+  puts "\e[32m=== Upping #{num_nodes} node(s) on #{operating_system} and cb version #{version} ==="
 end
 
 ### Start the vagrant configuration ###
@@ -148,6 +148,11 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+
+  if ARGV[0] == "up" && !ARGV[1]
+    puts "\e[32m=== Upping #{num_nodes} on IPs 192.168.#{ip_addresses[operating_system]}#{ip_addresses[version]}.10{1..#{num_nodes}} ==="
+  end
+
 end
 rescue
 end
