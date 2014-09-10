@@ -5,6 +5,7 @@
 $suffix = $operatingsystem ? {
     Ubuntu => ".deb",
     CentOS => ".rpm",
+    Debian => ".deb",
 }
 
 $fullUrl = "$url$suffix"
@@ -19,7 +20,7 @@ exec { "couchbase-server-source":
     before => Package['couchbase-server']
 }
 
-if $operatingsystem == 'Ubuntu'{
+if $operatingsystem == 'Ubuntu' or $operatingsystem == 'Debian'{
   # Update the System
   exec { "apt-get update":
 	     path => "/usr/bin"
@@ -44,6 +45,7 @@ package { "libssl0.9.8":
     name => $operatingsystem ? {
         Ubuntu => "libssl0.9.8",
         CentOS => "openssl098e",
+        Debian => "libssl1.0.0",
     },
     ensure => present,
     before => Package["couchbase-server"]
@@ -54,6 +56,7 @@ package { "couchbase-server":
     provider => $operatingsystem ? {
         Ubuntu => dpkg,
         CentOS => rpm,
+        Debian => dpkg,
     },
     ensure => installed,
     source => "/vagrant/$filename",
