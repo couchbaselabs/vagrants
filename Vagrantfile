@@ -48,6 +48,7 @@ version  ||= File.basename(File.expand_path('..'))
 couchbase_download_links = {
   "1.8.1" => "http://packages.couchbase.com/releases/1.8.1/couchbase-server-enterprise_x86_64_1.8.1",
   "2.0.1" => "http://packages.couchbase.com/releases/2.0.1/couchbase-server-enterprise_x86_64_2.0.1",
+  "2.1.1" => "http://packages.couchbase.com.s3.amazonaws.com/releases/2.1.1/couchbase-server-enterprise_x86_64_2.1.1",
   "2.5.1" => {"ubuntu10" => "http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"},
   "3.0.0-973-rel" => {"centos6"  => "http://packages.northscale.com/latestbuilds/3.0.0/couchbase-server-enterprise_centos6_x86_64_#{version}",
                       "ubuntu10" => "http://packages.northscale.com/latestbuilds/3.0.0/couchbase-server-enterprise_x86_64_#{version}",
