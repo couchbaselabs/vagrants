@@ -10,12 +10,14 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "centos5"  => "5",
   "centos6"  => "6",
   "windows"  => "7",
+  "debian7"  => "3",
   "1.8.1"    => "8",
   "2.0.1"    => "2",
   "2.5.0"    => "5",
   "2.5.1"    => "1",
   "3.0.0-973-rel" => "3",
   "3.0.0-beta2" => "3",
+  "3.0.0-beta3" => "3",
   "???"      => "9",
   "cbdev"    => "9"
 }
@@ -25,6 +27,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                },
   "ubuntu12" => "hashicorp/precise64",
   "ubuntu14" => "ubuntu/trusty64",
+  "debian7"  => "puppetlabs/debian-7.4-64-puppet",
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
                },
@@ -52,6 +55,10 @@ couchbase_download_links = {
                     "ubuntu12" => "http://packages.couchbase.com/releases/3.0.0-beta2/couchbase-server_3.0.0-beta2_x86_64_ubuntu_1204",
                     "centos5" => "http://packages.couchbase.com/releases/3.0.0-beta2/couchbase-server_3.0.0-beta2_x86_64_centos5",
                     "centos6" => "http://packages.couchbase.com/releases/3.0.0-beta2/couchbase-server_3.0.0-beta2_x86_64_centos6"
+                  },
+  "3.0.0-beta3" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.0-beta2/couchbase-server_3.0.0-beta2_x86_64_ubuntu_1204",
+                    "centos6" => "http://latestbuilds.hq.couchbase.com/couchbase-server-enterprise_centos6_x86_64_3.0.0-1209-rel",
+                    "debian7" => "http://latestbuilds.hq.couchbase.com/couchbase-server-enterprise_debian7_x86_64_3.0.0-1209-rel"
                   }
 }
 
