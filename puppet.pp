@@ -20,7 +20,7 @@ exec { "couchbase-server-source":
     before => Package['couchbase-server']
 }
 
-if $operatingsystem == 'Ubuntu' or 'Debian'{
+if $operatingsystem == 'Ubuntu' or $operatingsystem == 'Debian'{
   # Update the System
   exec { "apt-get update":
 	     path => "/usr/bin"
