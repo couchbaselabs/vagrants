@@ -78,6 +78,11 @@ else
   num_nodes = default_number_of_nodes
 end
 
+if ENV['VAGRANT_NOTIMEOUT'] == 1
+  timeout = 0
+  puts "\e[32m=== Timout disabled ==="
+end
+
 unless ENV['VAGRANT_CPUS'].nil? || ENV['VAGRANT_CPUS'] == 0
   num_cpus = ENV['VAGRANT_CPUS'].to_i
 else
