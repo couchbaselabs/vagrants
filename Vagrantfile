@@ -20,6 +20,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "3.0.0-973-rel" => "3",
   "3.0.0-beta2" => "3",
   "3.0.0-beta3" => "3",
+  "3.0.0"    => "3",
   "???"      => "9",
   "cbdev"    => "9"
 }
@@ -62,7 +63,11 @@ couchbase_download_links = {
   "3.0.0-beta3" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.0-beta2/couchbase-server_3.0.0-beta2_x86_64_ubuntu_1204",
                     "centos6" => "http://latestbuilds.hq.couchbase.com/couchbase-server-enterprise_centos6_x86_64_3.0.0-1209-rel",
                     "debian7" => "http://latestbuilds.hq.couchbase.com/couchbase-server-enterprise_debian7_x86_64_3.0.0-1209-rel"
-                  }
+                  },
+  "3.0.0" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64",
+              "centos6"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
+              "debian7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-debian7_amd64"
+             }
 }
 
 default_number_of_nodes = 4
