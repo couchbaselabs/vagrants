@@ -28,11 +28,22 @@ if $operatingsystem == 'Ubuntu' or $operatingsystem == 'Debian'{
   }
 }
 else{
-  # Ensure firewall is off (some CentOS images have firewall on by default).
-    service { "iptables":
-      ensure => "stopped",
-      enable => false
+  case $::operatingsystemmajrelease {
+    '5', '6': {
+      # Ensure firewall is off (some CentOS images have firewall on by default).
+      service { "iptables":
+        ensure => "stopped",
+        enable => false
+      }
     }
+    '7': {
+      # This becomes 'firewalld' in RHEL7'
+      service { "firewalld":
+        ensure => "stopped",
+        enable => false
+      }
+    }
+  }
 
   # Install pkgconfig (not all CentOS base boxes have it).
   package { "pkgconfig":

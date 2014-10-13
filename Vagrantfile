@@ -10,6 +10,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "centos5"  => "5",
   "centos6"  => "6",
   "windows"  => "7",
+  "centos7"  => "8",
   "debian7"  => "3",
   "1.8.1"    => "8",
   "2.0.1"    => "2",
@@ -66,6 +67,7 @@ couchbase_download_links = {
                   },
   "3.0.0" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64",
               "centos6"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
+              "centos7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
               "debian7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-debian7_amd64"
              }
 }
