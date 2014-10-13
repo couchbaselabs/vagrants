@@ -17,7 +17,8 @@ exec { "couchbase-server-source":
     command => "/usr/bin/wget $fullUrl",
     cwd => "/vagrant/",
     creates => "/vagrant/$filename",
-    before => Package['couchbase-server']
+    before => Package['couchbase-server'],
+    timeout => 1200
 }
 
 if $operatingsystem == 'Ubuntu' or $operatingsystem == 'Debian'{
