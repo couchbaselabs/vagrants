@@ -17,6 +17,7 @@ Additionally, you can specify the number of nodes to provision from the command 
 Base range:192.168.xx.10x
 * ubuntu10 = 1x
 * Ubuntu12 = 2x
+* Debian7 = 3x
 * Ubuntu14 = 4x
 * Centos5  = 5x
 * Centos6  = 6x
@@ -28,6 +29,7 @@ Base range:192.168.xx.10x
 * 2.5.0    = x5
 * 2.5.1    = x1
 * 3.0.0    = x3
+* 3.0.1    = x7
 
 Thus an Ubuntu12 box running 1.8 will have the ip 192.168.28.10x, a Centos5 box running version 2.5.1 will have the ip 192.168.61.10x, simples!
 
