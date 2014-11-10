@@ -29,7 +29,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                },
   "ubuntu12" => "hashicorp/precise64",
   "ubuntu14" => "ubuntu/trusty64",
-  "debian7"  => "puppetlabs/debian-7.4-64-puppet",
+  "debian7"  => "cargomedia/debian-7-amd64-default",
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
                },
