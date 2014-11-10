@@ -28,7 +28,6 @@ exec { "untar n1ql":
 # Start N1QL Tutorial script
 exec { "start tutorial":
   command => "/usr/bin/nohup /home/vagrant/n1ql-dp3/start_tutorial.sh > /tmp/n1ql-dp3-tutorial_out 2> /tmp/n1ql-dp3-tutorial_err &",
-  #command => "/usr/bin/id", 
   require => Exec['untar n1ql'],
 }
 
