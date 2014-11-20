@@ -118,6 +118,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |vb|
     vb.memory = ram_in_MB
     vb.cpus = num_cpus
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
   end
   config.vm.provider :libvirt do |libvirt|
     libvirt.memory = ram_in_MB
