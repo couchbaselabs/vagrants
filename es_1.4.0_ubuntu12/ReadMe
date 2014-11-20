@@ -1,2 +1,4 @@
 # vagrant up node1
 open browser to http://192.168.91.31:9200
+
+Elastic Search is installed into /usr/share/elasticsearch

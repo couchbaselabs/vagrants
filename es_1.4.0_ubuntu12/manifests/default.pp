@@ -1,5 +1,5 @@
 # ===
-# Install Elastic Search 1.4.0 
+# Install Elastic Search 1.4.0 + CB ES Plugin 2.0 
 # ===
 
 
@@ -38,3 +38,11 @@ package { "java7-jdk" :
 		path => "/etc/init.d",
                 require => Exec['dpkg es.deb']
         }
+
+# Install CB ES Plugin
+  exec { "install CB ES plugin 2.0":
+                command => "/usr/bin/sudo /usr/share/elasticsearch/bin/plugin -install transport-couchbase -url http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/2.0.0/elasticsearch-transport-couchbase-2.0.0.zip",
+                path => "/usr/share/elasticsearch",
+                require => Exec['elasticsearch start']
+        }
+
