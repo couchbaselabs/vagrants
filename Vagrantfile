@@ -20,7 +20,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "2.5.1"    => "1",
   "3.0.0"    => "3",
   "3.0.1"    => "7",
-  "???"      => "9",
+  "2.5.2"    => "9",
   "cbdev"    => "9"
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
@@ -50,6 +50,7 @@ couchbase_download_links = {
   "2.0.1" => "http://packages.couchbase.com/releases/2.0.1/couchbase-server-enterprise_x86_64_2.0.1",
   "2.1.1" => "http://packages.couchbase.com.s3.amazonaws.com/releases/2.1.1/couchbase-server-enterprise_x86_64_2.1.1",
   "2.5.1" => {"ubuntu10" => "http://packages.couchbase.com.s3.amazonaws.com/releases/2.5.1/couchbase-server-enterprise_2.5.1_x86_64_openssl098"},
+  "2.5.2" => {"ubuntu10" => "http://packages.couchbase.com/releases/2.5.2/couchbase-server-enterprise_2.5.2_x86_64_openssl098"},
   "3.0.0" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64",
               "centos6"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
