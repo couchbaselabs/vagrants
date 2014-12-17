@@ -6,22 +6,23 @@ begin
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
   "ubuntu10" => "1",
   "ubuntu12" => "2",
+  "debian7"  => "3",
   "ubuntu14" => "4",
   "centos5"  => "5",
   "centos6"  => "6",
   "windows"  => "7",
   "centos7"  => "8",
-  "debian7"  => "3",
-  "1.8.1"    => "8",
+  "cbdev"    => "9",
+  "2.5.1"    => "1",
   "2.0.1"    => "2",
-  "2.1.1"    => "6",
+  "3.0.0"    => "3",
   "2.2.0"    => "4",
   "2.5.0"    => "5",
-  "2.5.1"    => "1",
-  "3.0.0"    => "3",
+  "2.1.1"    => "6",
   "3.0.1"    => "7",
+  "1.8.1"    => "8",
   "2.5.2"    => "9",
-  "cbdev"    => "9"
+  "3.0.2"    => "0",
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",
@@ -60,7 +61,12 @@ couchbase_download_links = {
               "centos6"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise-3.0.1-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise-3.0.1-centos6.x86_64",
               "debian7"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise_3.0.1-debian7_amd64"
-             }
+             },
+  "3.0.2" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-ubuntu12.04_amd64",
+              "centos6"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise-3.0.2-centos6.x86_64",
+              "centos7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise-3.0.2-centos6.x86_64",
+              "debian7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64"
+             },
 }
 
 default_number_of_nodes = 4
