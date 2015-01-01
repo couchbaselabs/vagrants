@@ -23,7 +23,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "3.0.0"    => 7,
   "3.0.1"    => 8,
   "3.0.2"    => 9,
-  "cbdev"    => 10,
+  "cbdev"    => 15,
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",

@@ -12,26 +12,25 @@ internet access.
 
 Additionally, you can specify the number of nodes to provision from the command line by using the environment variable VAGRANT_NODES. For example: `VAGRANT_NODES=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default. `VAGRANT_CPUS` and `VAGRANT_RAM` are also available.
 
-**IP Ranges:**
+**IP Address Ranges:**
 
-Base range:192.168.xx.10x
-* ubuntu10 = 1x
-* Ubuntu12 = 2x
-* Debian7 = 3x
-* Ubuntu14 = 4x
-* Centos5  = 5x
-* Centos6  = 6x
-* Windows  = 7x
+Base range:192.168.xxx.10x where xxx is calculated based on the Couchbase Server version and the OS:
 
+|       |  centos5  |  centos6  |  centos7  |  debian7  |  ubuntu10 |  ubuntu12 |  ubuntu14 |  windows  |
+|:-----:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|
+| 1.8.1 |        16 |        32 |        48 |        64 |        80 |        96 |       112 |       128 |
+| 2.0.1 |        17 |        33 |        49 |        65 |        81 |        97 |       113 |       129 |
+| 2.1.1 |        18 |        34 |        50 |        66 |        82 |        98 |       114 |       130 |
+| 2.2.0 |        19 |        35 |        51 |        67 |        83 |        99 |       115 |       131 |
+| 2.5.0 |        20 |        36 |        52 |        68 |        84 |       100 |       116 |       132 |
+| 2.5.1 |        21 |        37 |        53 |        69 |        85 |       101 |       117 |       133 |
+| 2.5.2 |        22 |        38 |        54 |        70 |        86 |       102 |       118 |       134 |
+| 3.0.0 |        23 |        39 |        55 |        71 |        87 |       103 |       119 |       135 |
+| 3.0.1 |        24 |        40 |        56 |        72 |        88 |       104 |       120 |       136 |
+| 3.0.2 |        25 |        41 |        57 |        73 |        89 |       105 |       121 |       137 |
+| cbdev |        31 |        47 |        63 |        79 |        95 |       111 |       127 |       143 |
 
-* 1.8.1    = x8
-* 2.0.1    = x2
-* 2.5.0    = x5
-* 2.5.1    = x1
-* 3.0.0    = x3
-* 3.0.1    = x7
-
-Thus an Ubuntu12 box running 1.8 will have the ip 192.168.28.10x, a Centos5 box running version 2.5.1 will have the ip 192.168.61.10x, simples!
+Thus an Ubuntu12 box running 2.5.1 will have the ip 192.168.101.10x, a Centos6 box running version 3.0.2 will have the ip 192.168.41.10x, simples!
 
 # Building Couchbase
 
