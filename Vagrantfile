@@ -80,7 +80,9 @@ default_number_of_cpus = 1
 unless ENV['VAGRANT_NODES'].nil? || ENV['VAGRANT_NODES'] == 0
   num_nodes = ENV['VAGRANT_NODES'].to_i
 else
-  num_nodes = default_number_of_nodes
+  if num_nodes.nil?
+    num_nodes = default_number_of_nodes
+  end
 end
 
 unless ENV['VAGRANT_CPUS'].nil? || ENV['VAGRANT_CPUS'] == 0
