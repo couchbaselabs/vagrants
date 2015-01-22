@@ -1,5 +1,5 @@
 # Couchbase Server version
-version = "???"
+version = "cbdev"
 
 # Read and execute the top level Vagrantfile
 Dir.chdir File.dirname(__FILE__)
