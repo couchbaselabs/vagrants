@@ -23,6 +23,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "3.0.0"    => 7,
   "3.0.1"    => 8,
   "3.0.2"    => 9,
+  "sherlock-latest" => 14,
   "cbdev"    => 15,
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
@@ -68,6 +69,12 @@ couchbase_download_links = {
               "centos7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise-3.0.2-centos6.x86_64",
               "debian7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64"
              },
+  "sherlock-latest" => {"ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1273/couchbase-server-enterprise_3.5.0-1273-ubuntu12.04_amd64",
+              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1273/couchbase-server-enterprise-3.5.0-1273-centos6.x86_64",
+              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1273/couchbase-server-enterprise-3.5.0-1273-centos7.x86_64",
+              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1273/couchbase-server-enterprise_3.5.0-1273-debian7_amd64"
+             },
+
 }
 
 default_number_of_nodes = 4
