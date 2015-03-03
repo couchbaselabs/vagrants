@@ -3,10 +3,37 @@ file {'/tmp/test1':
   content => "Hello World!",
 }
 
-# TODO figure out how to do this, it wants urls or fully qualified paths
+package { "telnet" :
+  ensure => present
+} 
+
+package { 'httpd' : ensure => installed }
+service { 'httpd' : ensure => running   }
+
 file { '.bashrc' :
   source => '/vagrant/.bashrc',
   path => '/home/vagrant/.bashrc'
+}
+
+file { '/var/www':
+  ensure => 'directory'
+}
+
+file { '/var/www/html':
+  ensure => 'directory',
+  require => File['/var/www']
+}
+
+file { 'wwwroot' :
+  source => '/vagrant/wwwroot',
+  path => '/var/www/html/wwwroot',
+  recurse => true,
+  require => File['/var/www/html']
+}
+
+exec { "turn-off-firewall" :
+  command => "/usr/bin/sudo service iptables stop",
+  logoutput => on_failure
 }
 
 exec { "download-libcb-repo":
@@ -78,21 +105,36 @@ package {
   	require => Package["php-devel"]
 }
 
-
 exec { "install-cb-php-sdk" :
   command => "/usr/bin/sudo pecl install couchbase",
-  require => Package['php-pear'],
-  logoutput => true
+  require => Package['php-pear']
 }
 
+exec { "fix-php-ini" :
+  command => "/usr/bin/sudo chmod 666 /etc/php.ini; /usr/bin/sudo echo extension=/usr/lib64/php/modules/couchbase.so >> /etc/php.ini",
+  logoutput => on_failure,
+  require => Exec['install-cb-php-sdk']
+}
+
+exec { "restart-apache" :
+  command => "/usr/bin/sudo service httpd restart",
+  logoutput => on_failure,
+  require => Exec['fix-php-ini']
+}
 
 # Print all the versions of everything before exiting
 # Log them all to a file
 
-exec { "done-display-versions" :
+exec { "done-hello-world" :
   command => "/bin/echo 'Hello World' at `date`",
   require => Exec['install-cb-php-sdk'],
   logoutput => true
 }
 
+# The real FINAL step
 
+exec { "make-list-of-all-files" :
+  command => "/usr/bin/sudo find / -nowarn -type f > /home/vagrant/all-files-list 2>&1; echo",
+  require => Exec['done-hello-world'],
+  logoutput => true
+}

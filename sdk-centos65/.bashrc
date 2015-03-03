@@ -23,6 +23,8 @@ pecl list
 echo '--------------------        rpm         --------------------'
 rpm -qa | grep couch
 echo '------------------------------------------------------------'
+echo 'PHPInfo at:  http://localhost:8080/wwwroot/phpinfo.php '
+echo '------------------------------------------------------------'
 
 IPADDRESS=`ifconfig | grep "inet addr" | grep -v "127.0.0.1" | cut -f2 -d":" | cut -f1 -d" "`
 
