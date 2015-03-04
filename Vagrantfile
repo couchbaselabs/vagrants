@@ -35,8 +35,8 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
                },
-  "centos6"  => {"box_name" => "puppetlabs/centos-6.5-64-puppet",
-                 "box_url"  => "puppetlabs/centos-6.5-64-puppet",
+  "centos6"  => {"box_name" => "puppetlabs/centos-6.6-64-puppet",
+                 "box_url"  => "puppetlabs/centos-6.6-64-puppet",
                 },
   "centos7"  => "hfm4/centos7",
   "windows"  => "emyl/win2008r2",
