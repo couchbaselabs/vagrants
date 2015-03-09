@@ -13,6 +13,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "ubuntu12" => 6,
   "ubuntu14" => 7,
   "windows"  => 8,
+  "sles11"   => 9,
+
   "1.8.1"    => 0,
   "2.0.1"    => 1,
   "2.1.1"    => 2,
@@ -40,6 +42,9 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                 },
   "centos7"  => "hfm4/centos7",
   "windows"  => "emyl/win2008r2",
+  "sles11"   => {"box_name" => "opensuse-12.3-64",
+                 "box_url" => "http://sourceforge.net/projects/opensusevagrant/files/12.3/opensuse-12.3-64.box/download",
+                },
 }
 
 # Collect the names of the working directory and its parent (os and cb version)
