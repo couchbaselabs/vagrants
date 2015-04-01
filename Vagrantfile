@@ -75,12 +75,12 @@ couchbase_download_links = {
               "debian7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64"
              },
   "4.0.0-pre-alpha" => {
-              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1650/couchbase-server-enterprise-4.0.0-1650-centos6.x86_64",
-              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1650/couchbase-server-enterprise-4.0.0-1650-centos7.x86_64",
-              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1650/couchbase-server-enterprise_4.0.0-1650-debian7_amd64",
-              "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1650/couchbase-server-enterprise-4.0.0-1650-opensuse11.3.x86_64",
-              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1650/couchbase-server-enterprise_4.0.0-1650-ubuntu12.04_amd64",
-              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1650/couchbase-server-enterprise_4.0.0-1650-ubuntu14.04_amd64",
+              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1697/couchbase-server-enterprise-4.0.0-1697-centos6.x86_64",
+              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1697/couchbase-server-enterprise-4.0.0-1697-centos7.x86_64",
+              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1697/couchbase-server-enterprise_4.0.0-1697-debian7_amd64",
+              "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1697/couchbase-server-enterprise-4.0.0-1697-opensuse11.3.x86_64",
+              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1697/couchbase-server-enterprise_4.0.0-1697-ubuntu12.04_amd64",
+              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1697/couchbase-server-enterprise_4.0.0-1697-ubuntu14.04_amd64",
              },
 }
 
