@@ -81,12 +81,12 @@ couchbase_download_links = {
               "debian7"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise_3.0.3-debian7_amd64"
              },
   "4.0.0-pre-alpha" => {
-              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1767/couchbase-server-enterprise-4.0.0-1767-centos6.x86_64",
-              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1767/couchbase-server-enterprise-4.0.0-1767-centos7.x86_64",
-              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1767/couchbase-server-enterprise_4.0.0-1767-debian7_amd64",
-              "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1767/couchbase-server-enterprise-4.0.0-1767-opensuse11.3.x86_64",
-              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1767/couchbase-server-enterprise_4.0.0-1767-ubuntu12.04_amd64",
-              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1767/couchbase-server-enterprise_4.0.0-1767-ubuntu14.04_amd64",
+              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1817/couchbase-server-enterprise-4.0.0-1817-centos6.x86_64",
+              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1817/couchbase-server-enterprise-4.0.0-1817-centos7.x86_64",
+              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1817/couchbase-server-enterprise_4.0.0-1817-debian7_amd64",
+              "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1817/couchbase-server-enterprise-4.0.0-1817-opensuse11.3.x86_64",
+              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1817/couchbase-server-enterprise_4.0.0-1817-ubuntu12.04_amd64",
+              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1817/couchbase-server-enterprise_4.0.0-1817-ubuntu14.04_amd64",
              },
 }
 
