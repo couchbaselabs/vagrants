@@ -190,6 +190,10 @@ Vagrant.configure("2") do |config|
           v.gui = true
         end
       end
+      # Postfix a random value to hostname to uniquify it.
+      node.vm.provider "libvirt" do |v|
+        v.random_hostname = true
+      end
     end
   end
 
