@@ -81,7 +81,7 @@ couchbase_download_links = {
               "debian7"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise_3.0.3-debian7_amd64"
              },
   "4.0.0-pre-alpha" => {
-              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1891/couchbase-server-enterprise-4.0.0-1891-centos6.x86_64.rpm",
+              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1891/couchbase-server-enterprise-4.0.0-1891-centos6.x86_64",
               "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1891/couchbase-server-enterprise-4.0.0-1891-centos7.x86_64",
               "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1891/couchbase-server-enterprise_4.0.0-1891-debian7_amd64",
               "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1891/couchbase-server-enterprise-4.0.0-1891-opensuse11.3.x86_64",
