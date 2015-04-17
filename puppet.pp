@@ -6,6 +6,7 @@ $suffix = $operatingsystem ? {
     Ubuntu => ".deb",
     CentOS => ".rpm",
     Debian => ".deb",
+    OpenSuSE => ".rpm",
 }
 
 $fullUrl = "$url$suffix"
@@ -27,7 +28,18 @@ if $operatingsystem == 'Ubuntu' or $operatingsystem == 'Debian'{
 	     path => "/usr/bin"
   }
 }
-else{
+elsif $operatingsystem == 'OpenSuSE'{
+  package {"patterns-openSUSE-minimal_base-conflicts":
+  ensure => absent,
+  before => Package["python"]}
+
+  # Install python
+  package { "python":
+    ensure => present,
+    before => Package["couchbase-server"]
+  }
+}
+elsif $operatingsystem == 'CentOS'{
   case $::operatingsystemmajrelease {
     '5', '6': {
       # Ensure firewall is off (some CentOS images have firewall on by default).
@@ -58,6 +70,7 @@ package { "libssl0.9.8":
         Ubuntu => "libssl0.9.8",
         CentOS => "openssl098e",
         Debian => "libssl1.0.0",
+        OpenSuSE => "openssl",
     },
     ensure => present,
     before => Package["couchbase-server"]
@@ -69,6 +82,7 @@ package { "couchbase-server":
         Ubuntu => dpkg,
         CentOS => rpm,
         Debian => dpkg,
+        OpenSuSE => rpm,
     },
     ensure => installed,
     source => "/vagrant/$filename",
