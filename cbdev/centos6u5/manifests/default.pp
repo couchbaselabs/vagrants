@@ -34,10 +34,11 @@
 # package { $old_build_deps:
 #         ensure => "installed"
 # }
-# exec {"/usr/bin/wget -O- https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo && chmod a+x /usr/local/bin/repo":
-#      alias => "install_repo",
-#      creates => "/usr/local/bin/repo"
-# }
+
+exec {"/usr/bin/curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo && chmod a+x /usr/local/bin/repo":
+     alias => "install_repo",
+     creates => "/usr/local/bin/repo"
+}
 
 # # Google perftools (for tcmalloc). Not sure if this is needed for 3.0.0+
 # exec {"/usr/bin/wget https://gperftools.googlecode.com/files/gperftools-2.1.tar.gz":
