@@ -1,55 +1,39 @@
-# exec { "/usr/bin/apt-get update":
-#     alias   => "yum-update",
-# }
-
-# # Needed for tcmalloc & Couchbase
-# package { ['build-essential', 'libunwind7-dev']:
-#         require => Exec["yum-update"],
-#         ensure  =>  latest
-# }
-
-# # Needed for apt-add-repository
-# package { ['python-software-properties']:
-#         require => Exec["yum-update"],
-#         ensure  =>  latest
-# }
-
-# exec { "/usr/bin/apt-add-repository ppa:yjwong/cmake && /usr/bin/apt-get update":
-#     alias   => "ppa_cmake",
-#     require => Package["python-software-properties"],
-#     creates => "/etc/apt/sources.list.d/yjwong-cmake.list"
-# }
-
-# # Needed for building couchbase
-# $couchbase_deps = [ "git", "cmake", "libevent-dev", "libcurl4-openssl-dev",
-#                 "libicu-dev", "libsnappy-dev", "libv8-dev", "erlang",
-#                 "erlang-src" ]
-# package { $couchbase_deps:
-#         ensure => "installed",
-#         require => Exec["ppa_cmake"]
-# }
-
-# # Needed for pre-cmake (<3.0.0) builds:
-# $old_build_deps = [ "automake", "libtool", "cloog-ppl" ]
-# package { $old_build_deps:
-#         ensure => "installed"
-# }
-
-exec {"/usr/bin/curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo && chmod a+x /usr/local/bin/repo":
-     alias => "install_repo",
-     creates => "/usr/local/bin/repo"
+# Repo - manages all our git repositories
+exec {"/usr/bin/curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo &&
+       chmod a+x /usr/local/bin/repo":
+    alias => "install_repo",
+    creates => "/usr/local/bin/repo"
 }
 
-# # Google perftools (for tcmalloc). Not sure if this is needed for 3.0.0+
-# exec {"/usr/bin/wget https://gperftools.googlecode.com/files/gperftools-2.1.tar.gz":
-#      alias   => "download_gperftools",
-#      cwd     => "/tmp",
-#      creates => "/tmp/gperftools-2.1.tar.gz"
-# }
-# exec {"/bin/tar --overwrite -x -z -f gperftools-2.1.tar.gz && cd gperftools-2.1 && ./configure && make -j4 && make install":
-#      alias => "install_gperftools",
-#      cwd =>  "/tmp",
-#      require => [ Exec["download_gperftools"],
-#                   Package["build-essential"],
-#                   Package["libunwind7-dev"] ]
-# }
+# devtools-2 has updated versions of a number of development packages we need
+exec { "/usr/bin/curl http://people.centos.org/tru/devtools-2/devtools-2.repo > /etc/yum.repos.d/devtools-2.repo":
+    alias   => "devtools-2-repo",
+    creates => "/etc/yum.repos.d/devtools-2.repo"
+}
+
+$devtools = ["devtoolset-2-binutils", "devtoolset-2-gcc", "devtoolset-2-gcc-c++",
+             "devtoolset-2-git"]
+package { $devtools:
+    ensure  => installed,
+    require => Exec["devtools-2-repo"]
+}
+
+# epel needed for cmake
+package { "epel-release-6-8":
+    ensure => installed,
+    source => "http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm"
+}
+
+package { [ "openssl-devel", "redhat-lsb-core"]:
+    ensure => installed
+}
+
+package { ["cmake", "golang"]:
+    require => Package["epel-release-6-8"]
+}
+
+# devtoolset-2 installs things under /opt/r; add this to the path.
+file { '/etc/profile.d/append-devtoolset-path.sh':
+    mode    => 644,
+    content => 'PATH=$PATH:/opt/rh/devtoolset-2/root/usr/bin'
+}
