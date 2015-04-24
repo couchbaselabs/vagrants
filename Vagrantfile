@@ -103,6 +103,24 @@ default_number_of_nodes = 4
 default_RAM_in_MB = 1024
 default_number_of_cpus = 1
 
+## Edit these to allow other machines in your network to access the VMs
+
+# Set to true to activate non-host access
+#  make sure no one else will be impacted by this, as VMs will have forced ip that could collide
+#  (typically you should be close to alone on the LAN, with a few machines, ie at home)
+# alternatively set use_dhcp to true to avoid this (at the cost of not knowing the IP in advance)
+public_lan = false
+use_dhcp = false
+
+# Name of the host endpoint to serve as bridge to local network
+#  (if not found vagrant will ask the user for each node)
+default_bridge = "wlan0"
+
+# Base for IP in public network. %d replaced by node number, eg "192.168.1.10%d" to get 101, 102, ...
+#  (once again, be careful of potential ip collisions!)
+public_ip_base = "192.168.1.10%d"
+
+
 ### DO NOT EDIT BELOW THIS LINE
 
 # Number of nodes to provision
@@ -192,7 +210,16 @@ Vagrant.configure("2") do |config|
   1.upto(num_nodes) do |num|
     config.vm.define "node#{num}" do |node|
       node.vm.box = box_name
-      node.vm.network :private_network, :ip => ip_address % num
+      if public_lan && use_dhcp
+        node.vm.network :public_network, :bridge => default_bridge
+        puts "Public LAN ip obtained via DHCP, find it by connecting to the node: vagrant ssh node#{num}"
+      elsif public_lan
+       node.vm.network :public_network, :bridge => default_bridge, :ip =>  public_ip_base % num
+       puts "Public LAN ip : #{public_ip_base % num}"
+      else
+        node.vm.network :private_network, :ip => ip_address % num
+        puts "Private network (host only) ip : #{ip_address % num}"
+      end
       node.vm.provider "virtualbox" do |v|
         v.name = "Couchbase Server #{version} #{operating_system.gsub '/', '_'} Node #{num}"
         if(operating_system.include?("win")) # If the VM is running Windows it will start with a GUI
@@ -207,7 +234,13 @@ Vagrant.configure("2") do |config|
   end
 
   if ARGV[0] == "up" && !ARGV[1]
-    puts "\e[32m=== Upping #{num_nodes} node(s) on IPs #{ip_address.sub('%d','')}{1..#{num_nodes}} ==="
+    if public_lan && use_dhcp
+      puts "\e[32m=== Upping #{num_nodes} node(s) on public LAN via DHCP ==="
+    elsif public_lan
+      puts "\e[32m=== Upping #{num_nodes} node(s) on public LAN IPs #{public_ip_base.sub('%d','')}{1..#{num_nodes}} ==="
+    else
+      puts "\e[32m=== Upping #{num_nodes} node(s) on IPs #{ip_address.sub('%d','')}{1..#{num_nodes}} ==="
+    end
   end
 
 end
