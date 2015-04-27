@@ -14,6 +14,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "ubuntu14" => 7,
   "windows"  => 8,
   "sles11"   => 9,
+  "debian8"  => 10,
 
   "1.8.1"    => 0,
   "2.0.1"    => 1,
@@ -48,6 +49,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "sles11"   => {"box_name" => "opensuse-12.3-64",
                  "box_url" => "http://sourceforge.net/projects/opensusevagrant/files/12.3/opensuse-12.3-64.box/download",
                 },
+  "debian8"  => "lazyfrosch/debian-8-jessie-amd64-puppet",
 }
 
 # Collect the names of the working directory and its parent (os and cb version)
@@ -64,27 +66,32 @@ couchbase_download_links = {
   "3.0.0" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64",
               "centos6"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise-3.0.0-centos6.x86_64",
-              "debian7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-debian7_amd64"
+              "debian7"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-debian7_amd64",
+              "debian8"  => "http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-debian7_amd64",
              },
   "3.0.1" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise_3.0.1-ubuntu12.04_amd64",
               "centos6"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise-3.0.1-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise-3.0.1-centos6.x86_64",
-              "debian7"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise_3.0.1-debian7_amd64"
+              "debian7"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise_3.0.1-debian7_amd64",
+              "debian8"  => "http://packages.couchbase.com/releases/3.0.1/couchbase-server-enterprise_3.0.1-debian7_amd64",
              },
   "3.0.2" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-ubuntu12.04_amd64",
               "centos6"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise-3.0.2-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise-3.0.2-centos6.x86_64",
-              "debian7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64"
+              "debian7"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64",
+              "debian8"  => "http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64",
              },
   "3.0.3" => {"ubuntu12" => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise_3.0.3-ubuntu12.04_amd64",
               "centos6"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise-3.0.3-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise-3.0.3-centos6.x86_64",
-              "debian7"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise_3.0.3-debian7_amd64"
+              "debian7"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise_3.0.3-debian7_amd64",
+              "debian8"  => "http://packages.couchbase.com/releases/3.0.3/couchbase-server-enterprise_3.0.3-debian7_amd64",
              },
   "4.0.0-dp" => {
               "centos6"  => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise-4.0.0-dp-centos6.x86_64",
               "centos7"  => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise-4.0.0-dp-centos7.x86_64",
               "debian7"  => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise_4.0.0-dp-debian7_amd64",
+              "debian8"  => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise_4.0.0-dp-debian7_amd64",
               "sles11"   => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise-4.0.0-dp-suse11.3.x86_64",
               "ubuntu12" => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise_4.0.0-dp-ubuntu12.04_amd64",
               "ubuntu14" => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise_4.0.0-dp-ubuntu14.04_amd64",
@@ -93,6 +100,7 @@ couchbase_download_links = {
               "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise-4.0.0-1913-centos6.x86_64",
               "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise-4.0.0-1913-centos7.x86_64",
               "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-debian7_amd64",
+              "debian8"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-debian7_amd64",
               "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise-4.0.0-1913-opensuse11.3.x86_64",
               "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-ubuntu12.04_amd64",
               "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-ubuntu14.04_amd64",
