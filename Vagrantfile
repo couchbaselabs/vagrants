@@ -97,13 +97,13 @@ couchbase_download_links = {
               "ubuntu14" => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise_4.0.0-dp-ubuntu14.04_amd64",
              },
   "4.0.0-testing" => {
-              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise-4.0.0-1913-centos6.x86_64",
-              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise-4.0.0-1913-centos7.x86_64",
-              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-debian7_amd64",
-              "debian8"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-debian7_amd64",
-              "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise-4.0.0-1913-opensuse11.3.x86_64",
-              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-ubuntu12.04_amd64",
-              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1913/couchbase-server-enterprise_4.0.0-1913-ubuntu14.04_amd64",
+              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise-4.0.0-1977-centos6.x86_64",
+              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise-4.0.0-1977-centos7.x86_64",
+              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise_4.0.0-1977-debian7_amd64",
+              "debian8"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise_4.0.0-1977-debian7_amd64",
+              "sles11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise-4.0.0-1977-opensuse11.3.x86_64",
+              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise_4.0.0-1977-ubuntu12.04_amd64",
+              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/1977/couchbase-server-enterprise_4.0.0-1977-ubuntu14.04_amd64",
              },
 }
 
