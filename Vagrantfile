@@ -100,14 +100,14 @@ couchbase_download_links = {
               "ubuntu14" => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise_4.0.0-dp-ubuntu14.04_amd64",
              },
   "4.0.0-testing" => {
-              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise-4.0.0-2093-centos6.x86_64",
-              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise-4.0.0-2093-centos7.x86_64",
-              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise_4.0.0-2093-debian7_amd64",
-              "debian8-unsupported"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise_4.0.0-2093-debian7_amd64",
-              "opensuse11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise-4.0.0-2093-opensuse11.3.x86_64",
-              "opensuse12-unsupported"  => "http://packages.couchbase.com/releases/4.0.0-dp/couchbase-server-enterprise-4.0.0-dp-suse11.3.x86_64",
-              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise_4.0.0-2093-ubuntu12.04_amd64",
-              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2093/couchbase-server-enterprise_4.0.0-2093-ubuntu14.04_amd64",
+              "centos6"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise-4.0.0-2213-centos6.x86_64",
+              "centos7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise-4.0.0-2213-centos7.x86_64",
+              "debian7"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise_4.0.0-2213-debian7_amd64",
+              "debian8-unsupported"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise_4.0.0-2213-debian7_amd64",
+              "opensuse11"   => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise-4.0.0-2213-opensuse11.3.x86_64",
+              "opensuse12-unsupported"  => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise-4.0.0-2213-opensuse11.3.x86_64",
+              "ubuntu12" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise_4.0.0-2213-ubuntu12.04_amd64",
+              "ubuntu14" => "http://latestbuilds.hq.couchbase.com/couchbase-server/sherlock/2213/couchbase-server-enterprise_4.0.0-2213-ubuntu14.04_amd64",
              },
 }
 
