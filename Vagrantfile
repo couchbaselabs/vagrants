@@ -156,6 +156,12 @@ else
   ram_in_MB = default_RAM_in_MB
 end
 
+unless ENV['VAGRANT_VPN'].nil?
+  vpn = "on"
+else
+  vpn = "off"
+end
+
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
 if couchbase_download_links.has_key?(version)
   if couchbase_download_links[version].is_a?(String)
@@ -187,6 +193,7 @@ Vagrant.configure("2") do |config|
     vb.memory = ram_in_MB
     vb.cpus = num_cpus
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "#{vpn}"]
   end
   config.vm.provider :libvirt do |libvirt|
     libvirt.memory = ram_in_MB
