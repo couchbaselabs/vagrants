@@ -248,7 +248,7 @@ Vagrant.configure("2") do |config|
        puts "Public LAN ip : #{public_ip_base % num}"
       else
         node.vm.network :private_network, :ip => ip_address % num
-        puts "Private network (host only) ip : #{ip_address % num}"
+        puts "Private network (host only) ip : http://#{ip_address % num}:8091"
       end
       node.vm.provider "virtualbox" do |v|
         v.name = "Couchbase Server #{version} #{operating_system.gsub '/', '_'} Node #{num}"
