@@ -190,6 +190,12 @@ if (defined?(ip)).nil?
   ip_address = "192.168." + String((ip_addresses[operating_system] << 4) + ip_addresses[version]) + ".10%d"
 end
 
+# Generate a hostname template
+hostname = "#{version.gsub '.', '-'}-#{operating_system}-node%d.vagrants"
+if hostname =~ /^[0-9]/
+  hostname.prepend("cb-")
+end
+
 # Check to see if the vagrant command given was 'up', if so print a handy dialogue
 if ARGV[0] == "up" && !ARGV[1]
   puts "\e[32m=== Upping #{num_nodes} node(s) on #{operating_system} and cb version #{version} ==="
@@ -250,11 +256,15 @@ Vagrant.configure("2") do |config|
         node.vm.network :private_network, :ip => ip_address % num
         puts "Private network (host only) ip : http://#{ip_address % num}:8091"
       end
+      node.vm.hostname = hostname % num
       node.vm.provider "virtualbox" do |v|
         v.name = "Couchbase Server #{version} #{operating_system.gsub '/', '_'} Node #{num}"
         if(operating_system.include?("win")) # If the VM is running Windows it will start with a GUI
           v.gui = true
         end
+      end
+      if Vagrant.has_plugin?("vagrant-dns")
+        node.dns.tld = "vagrants"
       end
       # Postfix a random value to hostname to uniquify it.
       node.vm.provider "libvirt" do |v|

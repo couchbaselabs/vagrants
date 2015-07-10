@@ -32,6 +32,17 @@ Base range:192.168.xxx.10x where xxx is calculated based on the Couchbase Server
 
 Thus an Ubuntu12 box running 2.5.1 will have the ip 192.168.101.10x, a Centos6 box running version 3.0.2 will have the ip 192.168.41.10x, simples!
 
+## Hostnames
+
+The hostname of the VM will be set based on the version of Couchbase Server and of the OS selected, e.g.:
+
+    cb-2-5-2-ubuntu12-node1.vagrants
+    cb-3-0-3-centos6-node2.vagrants
+
+
+### DNS
+If the user has the *vagrants-dns* plugin installed, the TLD will be set to `.vagrants`.  This allows the hostname to be queried from the host machine.
+
 # Building Couchbase
 
 The subdirectory `cbdev_ubuntu_1204` contains a Vagrant configuration for
