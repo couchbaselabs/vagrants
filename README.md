@@ -12,7 +12,7 @@ internet access.
 
 Additionally, you can specify the number of nodes to provision from the command line by using the environment variable VAGRANT_NODES. For example: `VAGRANT_NODES=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default. `VAGRANT_CPUS` and `VAGRANT_RAM` are also available.
 
-**IP Address Ranges:**
+### IP Addresses
 
 Base range:192.168.xxx.10x where xxx is calculated based on the Couchbase Server version and the OS:
 
@@ -32,7 +32,7 @@ Base range:192.168.xxx.10x where xxx is calculated based on the Couchbase Server
 
 Thus an Ubuntu12 box running 2.5.1 will have the ip 192.168.101.10x, a Centos6 box running version 3.0.2 will have the ip 192.168.41.10x, simples!
 
-## Hostnames
+### Hostnames
 
 The hostname of the VM will be set based on the version of Couchbase Server and of the OS selected, e.g.:
 
