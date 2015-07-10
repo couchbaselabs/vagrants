@@ -41,7 +41,7 @@ The hostname of the VM will be set based on the version of Couchbase Server and 
 
 
 ### DNS
-If the user has the *vagrants-dns* plugin installed, the TLD will be set to `.vagrants`.  This allows the hostname to be queried from the host machine.
+If the user has the *vagrant-dns* plugin installed, the TLD will be set to `.vagrants`.  This allows the hostname to be queried from the host machine.
 
 # Building Couchbase
 
