@@ -217,6 +217,8 @@ Vagrant.configure("2") do |config|
     libvirt.cpus = num_cpus
   end
 
+  config.vm.synced_folder ENV['HOME'], "/vmhost_home/"
+
   # Define the vagrant box download location
   if !(vagrant_boxes[operating_system]["box_url"].nil?)
     config.vm.box_url = vagrant_boxes[operating_system]["box_url"]
