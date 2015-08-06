@@ -36,12 +36,15 @@ Thus an Ubuntu12 box running 2.5.1 will have the ip 192.168.101.10x, a Centos6 b
 
 The hostname of the VM will be set based on the version of Couchbase Server and of the OS selected, e.g.:
 
-    cb-2-5-2-ubuntu12-node1.vagrants
-    cb-3-0-3-centos6-node2.vagrants
+    node1-cb252-ubuntu12.vagrants
+    node2-cb303-centos6.vagrants
 
 
 ### DNS
-If the user has the *vagrant-dns* plugin installed, the TLD will be set to `.vagrants`.  This allows the hostname to be queried from the host machine.
+
+If the user has the *landrush* plugin installed, the TLD will be set to `.vagrants`.  This
+allows the hostname to be queried from both the host and the guests.  For more details
+see the [landrush README](https://github.com/phinze/landrush).
 
 # Building Couchbase
 

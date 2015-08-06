@@ -198,10 +198,11 @@ if (defined?(ip)).nil?
 end
 
 # Generate a hostname template
-hostname = "#{version.gsub '.', '-'}-#{operating_system}-node%d.vagrants"
+hostname = "#{version.gsub '.', ''}-#{operating_system}.vagrants"
 if hostname =~ /^[0-9]/
-  hostname.prepend("cb-")
+  hostname.prepend("cb")
 end
+hostname.prepend("node%d-")
 
 # Check to see if the vagrant command given was 'up', if so print a handy dialogue
 if ARGV[0] == "up" && !ARGV[1]
@@ -263,7 +264,11 @@ Vagrant.configure("2") do |config|
        puts "Public LAN ip : #{public_ip_base % num}"
       else
         node.vm.network :private_network, :ip => ip_address % num
-        puts "Private network (host only) ip : http://#{ip_address % num}:8091"
+        if Vagrant.has_plugin?("landrush")
+          puts "Private network (host only) : http://#{hostname % num}:8091/"
+        else
+          puts "Private network (host only) : http://#{ip_address % num}:8091/"
+        end
       end
       node.vm.hostname = hostname % num
       node.vm.provider "virtualbox" do |v|
@@ -272,8 +277,9 @@ Vagrant.configure("2") do |config|
           v.gui = true
         end
       end
-      if Vagrant.has_plugin?("vagrant-dns")
-        node.dns.tld = "vagrants"
+      if Vagrant.has_plugin?("landrush")
+        node.landrush.enabled = true
+        node.landrush.tld = "vagrants"
       end
       # Postfix a random value to hostname to uniquify it.
       node.vm.provider "libvirt" do |v|
