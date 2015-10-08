@@ -46,6 +46,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                },
   "centos6"  => {"box_name" => "puppetlabs/centos-6.6-64-puppet",
                  "box_url"  => "puppetlabs/centos-6.6-64-puppet",
+                 "box_version" => "1.0.1"
                 },
   "centos7"  => "hfm4/centos7",
   "windows"  => "emyl/win2008r2",
@@ -235,6 +236,11 @@ Vagrant.configure("2") do |config|
     box_name = vagrant_boxes[operating_system]
   end
 
+  # Define the box version if specified - default to most recent
+  if !(vagrant_boxes[operating_system]["box_version"].nil?)
+    box_version = vagrant_boxes[operating_system]["box_version"]
+  end
+
   # Check to see if the VM is not running Windows and provision with puppet
   if !(operating_system.include?("win"))
     # Provision the server itself with puppet
@@ -252,6 +258,9 @@ Vagrant.configure("2") do |config|
   1.upto(num_nodes) do |num|
     config.vm.define "node#{num}" do |node|
       node.vm.box = box_name
+      if !(box_version.nil?)
+        node.vm.box_version = box_version
+      end
       if public_lan && use_dhcp
         node.vm.network :public_network, :bridge => default_bridge
         puts "Public LAN ip obtained via DHCP, find it by connecting to the node: vagrant ssh node#{num}"
