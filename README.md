@@ -14,35 +14,49 @@ Additionally, you can specify the number of nodes to provision from the command 
 
 ### IP Addresses
 
-Base range:192.168.xxx.10x where xxx is calculated based on the Couchbase Server version and the OS:
+Base range:10.xxx.yyy.10n where xxx and yyy are based on the Operating System and Couchbase Server versions, and n is the node number:
 
-|       |  centos5  |  centos6  |  centos7  |  debian7  |  ubuntu10 |  ubuntu12 |  ubuntu14 |  windows  |
-|:-----:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|
-| 1.8.1 |        16 |        32 |        48 |        64 |        80 |        96 |       112 |       128 |
-| 2.0.1 |        17 |        33 |        49 |        65 |        81 |        97 |       113 |       129 |
-| 2.1.1 |        18 |        34 |        50 |        66 |        82 |        98 |       114 |       130 |
-| 2.2.0 |        19 |        35 |        51 |        67 |        83 |        99 |       115 |       131 |
-| 2.5.0 |        20 |        36 |        52 |        68 |        84 |       100 |       116 |       132 |
-| 2.5.1 |        21 |        37 |        53 |        69 |        85 |       101 |       117 |       133 |
-| 2.5.2 |        22 |        38 |        54 |        70 |        86 |       102 |       118 |       134 |
-| 3.0.0 |        23 |        39 |        55 |        71 |        87 |       103 |       119 |       135 |
-| 3.0.1 |        24 |        40 |        56 |        72 |        88 |       104 |       120 |       136 |
-| 3.0.2 |        25 |        41 |        57 |        73 |        89 |       105 |       121 |       137 |
-| 3.0.3 |        26 |        42 |        58 |        74 |        90 |       106 |       122 |       138 |
-| 3.1.0 |        27 |        43 |        59 |        75 |        91 |       107 |       123 |       139 |
-| 3.1.1 |        28 |        44 |        60 |        76 |        92 |       108 |       124 |       140 |
-| 4.0.0 |        29 |        45 |        61 |        77 |        93 |       109 |       125 |       141 |
-|4.5.0-t|        30 |        46 |        62 |        78 |        94 |       110 |       126 |       142 |
-| cbdev |        31 |        47 |        63 |        79 |        95 |       111 |       127 |       143 |
+|         OS | xxx |
+|:----------:|----:|
+|    centos5 | 110 |
+|    centos6 | 111 |
+|    centos7 | 112 |
+|    debian7 | 120 |
+|    debian8 | 121 |
+| opensuse11 | 130 |
+| opensuse12 | 131 |
+|   ubuntu10 | 140 |
+|   ubuntu12 | 141 |
+|   ubuntu14 | 145 |
+|    windows | 150 |
 
-Thus an Ubuntu12 box running 2.5.1 will have the ip 192.168.101.10x, a Centos6 box running version 3.0.2 will have the ip 192.168.41.10x, simples!
+|     Couchbase | yyy |
+|:-------------:|----:|
+|         1.8.1 |  51 |
+|         2.0.1 |  56 |
+|         2.1.1 |  61 |
+|         2.2.0 |  65 |
+|         2.5.0 |  70 |
+|         2.5.1 |  71 |
+|         2.5.2 |  72 |
+|         3.0.0 |  80 |
+|         3.0.1 |  81 |
+|         3.0.2 |  82 |
+|         3.0.3 |  83 |
+|         3.1.0 |  90 |
+|         3.1.1 |  91 |
+|         4.0.0 | 100 |
+| 4.5.0-testing | 150 |
+|         cbdev | 200 |
+
+Thus the first Ubuntu12 box running 3.0.3 will have the IP Address 10.141.83.101, and the second Centos6 box running version 4.0.0 will have 10.111.100.102.
 
 ### Hostnames
 
 The hostname of the VM will be set based on the version of Couchbase Server and of the OS selected, e.g.:
 
-    node1-cb252-ubuntu12.vagrants
-    node2-cb303-centos6.vagrants
+    node1-cb303-ubuntu12.vagrants
+    node2-cb400-centos6.vagrants
 
 
 ### DNS
