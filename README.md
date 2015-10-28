@@ -27,7 +27,7 @@ Base range:10.xxx.yyy.10n where xxx and yyy are based on the Operating System an
 | opensuse12 | 131 |
 |   ubuntu10 | 140 |
 |   ubuntu12 | 141 |
-|   ubuntu14 | 145 |
+|   ubuntu14 | 142 |
 |    windows | 150 |
 
 |     Couchbase | yyy |

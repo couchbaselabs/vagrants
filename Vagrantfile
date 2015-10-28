@@ -13,7 +13,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "opensuse12-unsupported" => 131,
   "ubuntu10" => 140,
   "ubuntu12" => 141,
-  "ubuntu14" => 145,
+  "ubuntu14" => 142,
   "windows"  => 150,
 
   "1.8.1"    => 51,
