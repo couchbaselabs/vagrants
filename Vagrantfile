@@ -4,35 +4,34 @@
 ### Variable declarations - FEEL FREE TO EDIT THESE ###
 begin
 ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd together to form a full ip address
-  "unused"   => 0, # Skip 0 to avoid colliding with commonly used 192.168.[01].x
-  "centos5"  => 1,
-  "centos6"  => 2,
-  "centos7"  => 3,
-  "debian7"  => 4,
-  "ubuntu10" => 5,
-  "ubuntu12" => 6,
-  "ubuntu14" => 7,
-  "windows"  => 8,
-  "opensuse11"   => 9,
-  "debian8-unsupported"  => 10,
-  "opensuse12-unsupported" => 11,
+  "centos5"  => 110,
+  "centos6"  => 111,
+  "centos7"  => 112,
+  "debian7"  => 120,
+  "debian8-unsupported"  => 121,
+  "opensuse11"   => 130,
+  "opensuse12-unsupported" => 131,
+  "ubuntu10" => 140,
+  "ubuntu12" => 141,
+  "ubuntu14" => 145,
+  "windows"  => 150,
 
-  "1.8.1"    => 0,
-  "2.0.1"    => 1,
-  "2.1.1"    => 2,
-  "2.2.0"    => 3,
-  "2.5.0"    => 4,
-  "2.5.1"    => 5,
-  "2.5.2"    => 6,
-  "3.0.0"    => 7,
-  "3.0.1"    => 8,
-  "3.0.2"    => 9,
-  "3.0.3"    => 10,
-  "3.1.0"    => 11,
-  "3.1.1"    => 12,
-  "4.0.0"    => 13,
-  "4.5.0-testing" => 14,
-  "cbdev"    => 15,
+  "1.8.1"    => 51,
+  "2.0.1"    => 56,
+  "2.1.1"    => 61,
+  "2.2.0"    => 65,
+  "2.5.0"    => 70,
+  "2.5.1"    => 71,
+  "2.5.2"    => 72,
+  "3.0.0"    => 80,
+  "3.0.1"    => 81,
+  "3.0.2"    => 82,
+  "3.0.3"    => 83,
+  "3.1.0"    => 90,
+  "3.1.1"    => 91,
+  "4.0.0"    => 100,
+  "4.5.0-testing" => 150,
+  "cbdev"    => 200,
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",
@@ -191,7 +190,7 @@ puppet_location ||= "../.."
 
 # Check to see if a custom ip address has been given, if not generate one
 if (defined?(ip)).nil?
-  ip_address = "192.168." + String((ip_addresses[operating_system] << 4) + ip_addresses[version]) + ".10%d"
+  ip_address = "10." + String(ip_addresses[operating_system]) + "." + String(ip_addresses[version]) + ".10%d"
 end
 
 # Generate a hostname template
