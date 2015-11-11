@@ -31,7 +31,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "3.1.1"    => 91,
   "3.1.2-testing"    => 92,
   "4.0.0"    => 100,
-  "4.1.0-testing" => 110,
+  "4.1.0-dp" => 110,
   "4.5.0-testing" => 150,
   "cbdev"    => 200,
 }
@@ -89,15 +89,15 @@ couchbase_download_links = {
               "opensuse11" => "#{latest_builds}/couchbase-server-enterprise_suse11_x86_64_3.1.2-1815-rel",
               "ubuntu12"   => "#{latest_builds}/couchbase-server-enterprise_ubuntu_1204_x86_64_3.1.2-1815-rel",
   },
-  "4.1.0-testing" => {
-              "centos6"    => "#{sherlock_builds}/4904/couchbase-server-enterprise-4.1.0-4904-centos6.x86_64",
-              "centos7"    => "#{sherlock_builds}/4904/couchbase-server-enterprise-4.1.0-4904-centos7.x86_64",
-              "debian7"    => "#{sherlock_builds}/4904/couchbase-server-enterprise_4.1.0-4904-debian7_amd64",
-              "debian8"    => "#{sherlock_builds}/4904/couchbase-server-enterprise_4.1.0-4904-debian7_amd64",
-              "opensuse11" => "#{sherlock_builds}/4904/couchbase-server-enterprise-4.1.0-4904-suse11.x86_64",
-              "opensuse12" => "#{sherlock_builds}/4904/couchbase-server-enterprise-4.1.0-4904-suse11.x86_64",
-              "ubuntu12"   => "#{sherlock_builds}/4904/couchbase-server-enterprise_4.1.0-4904-ubuntu12.04_amd64",
-              "ubuntu14"   => "#{sherlock_builds}/4904/couchbase-server-enterprise_4.5.0-4904-ubuntu14.04_amd64",
+  "4.1.0-dp" => {
+              "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-#{version}-centos6.x86_64",
+              "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{version}-centos7.x86_64",
+              "debian7"    => "#{couchbase_releases}/#{version}/couchbase-server_#{version}-debian7_amd64",
+              "debian8"    => "#{couchbase_releases}/#{version}/couchbase-server_#{version}-debian7_amd64",
+              "opensuse11" => "#{couchbase_releases}/#{version}/couchbase-server-#{version}-suse11.x86_64",
+              "opensuse12" => "#{couchbase_releases}/#{version}/couchbase-server-#{version}-suse11.x86_64",
+              "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server_#{version}-ubuntu12.04_amd64",
+              "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server_#{version}-ubuntu14.04_amd64",
   },
   "4.5.0-testing" => {
               "centos6"    => "#{watson_builds}/562/couchbase-server-enterprise-4.5.0-562-centos6.x86_64",
