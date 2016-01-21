@@ -65,6 +65,10 @@ If the user has the *landrush* plugin installed, the TLD will be set to `.vagran
 allows the hostname to be queried from both the host and the guests.  For more details
 see the [landrush README](https://github.com/phinze/landrush).
 
+# Per-box Caching
+
+If the user has the *vagrant-cachier* plugin installed, a per-box cache (for e.g. APT, RPM), will be maintained in `~/.vagrant.d/cache/<BOX_NAME>/`.  For more details see the [vagrant-cachier README](https://github.com/fgrehm/vagrant-cachier).
+
 # Building Couchbase
 
 The subdirectory `cbdev_ubuntu_1204` contains a Vagrant configuration for
