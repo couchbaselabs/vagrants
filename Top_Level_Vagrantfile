@@ -54,7 +54,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "centos7"  => { "box_name" => "puppetlabs/centos-7.0-64-puppet",
                   "box_version" => "1.0.1"
                 },
-  "windows"  => "emyl/win2008r2",
+  "windows"  => "joshbeard/windows_2008_r2",
   "opensuse11"  => "minesense/opensuse11.1",
   "opensuse12"   => {"box_name" => "opensuse-12.3-64",
                  "box_url" => "http://sourceforge.net/projects/opensusevagrant/files/12.3/opensuse-12.3-64.box/download",
@@ -311,6 +311,53 @@ Vagrant.configure("2") do |config|
       puts "\e[32m=== Upping #{num_nodes} node(s) on public LAN IPs #{public_ip_base.sub('%d','')}{1..#{num_nodes}} ==="
     else
       puts "\e[32m=== Upping #{num_nodes} node(s) on IPs #{ip_address.sub('%d','')}{1..#{num_nodes}} ==="
+    end
+  end
+
+  config.vm.define "windows", autostart: false do |windows|
+    # Define the vagrant box download location
+    if !(vagrant_boxes["windows"]["box_url"].nil?)
+      windows.vm.box_url = vagrant_boxes["windows"]["box_url"]
+    end
+
+    # Define the vagrant box name
+    if !(vagrant_boxes["windows"]["box_name"].nil?)
+      windows.vm.box = vagrant_boxes["windows"]["box_name"]
+    else
+      windows.vm.box = vagrant_boxes["windows"]
+    end
+
+    # Define the box version if specified - default to most recent
+    if !(vagrant_boxes["windows"]["box_version"].nil?)
+      windows.vm.box_version = vagrant_boxes["windows"]["box_version"]
+    end
+
+    # Set the hostname similar to the Couchbase nodes
+    hostname = "windows-cb#{version.gsub '.', ''}-#{operating_system}.vagrants"
+    # A little hacky, assume nobody will start more than 8 Couchbase nodes
+    num = 9
+    if public_lan && use_dhcp
+      windows.vm.network :public_network, :bridge => default_bridge
+      puts "Public LAN ip obtained via DHCP, find it by connecting to the node: vagrant rdp windows"
+    elsif public_lan
+      windows.vm.network :public_network, :bridge => default_bridge, :ip =>  public_ip_base % num
+      puts "Public LAN ip : #{public_ip_base % num}"
+    else
+      windows.vm.network :private_network, :ip => ip_address % num
+      if Vagrant.has_plugin?("landrush")
+	puts "Private network (host only) : #{hostname}"
+      else
+	puts "Private network (host only) : #{ip_address % num}"
+      end
+    end
+    windows.vm.hostname = hostname
+    windows.vm.provider "virtualbox" do |v|
+      v.name = "Couchbase Server #{version} #{operating_system.gsub '/', '_'} Windows Server"
+      v.gui = true
+    end
+    if Vagrant.has_plugin?("landrush")
+      windows.landrush.enabled = true
+      windows.landrush.tld = "vagrants"
     end
   end
 
