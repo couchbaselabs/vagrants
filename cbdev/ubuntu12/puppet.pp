@@ -23,7 +23,7 @@ exec { "/usr/bin/apt-add-repository ppa:yjwong/cmake && /usr/bin/apt-get update"
 # Needed for building couchbase
 $couchbase_deps = [ "git", "cmake", "libevent-dev", "libcurl4-openssl-dev",
                 "libicu-dev", "libsnappy-dev", "libv8-dev", "erlang",
-                "erlang-src" ]
+                "erlang-src", "gccgo-go" ]
 package { $couchbase_deps:
         ensure => "installed",
         require => Exec["ppa_cmake"]

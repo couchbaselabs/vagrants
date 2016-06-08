@@ -3,7 +3,7 @@ exec { "/usr/bin/apt-get update":
 }
 
 # Needed for building couchbase
-$couchbase_deps = [ "git", "cmake", "libevent-dev", "libcurl4-openssl-dev",
+$couchbase_deps = [ "git", "cmake", "libevent-dev", "libcurl4-openssl-dev", "gccgo-go",
                 "libicu-dev", "libsnappy-dev", "libv8-dev", "erlang",
                 "erlang-src", "build-essential", "libgoogle-perftools-dev" ]
 package { $couchbase_deps:
