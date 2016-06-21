@@ -34,6 +34,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "3.1.3"    => 93,
   "3.1.4"    => 94,
   "3.1.5"    => 95,
+  "3.1.6-testing"    => 96,
   "4.0.0"    => 100,
   "4.1.0"    => 110,
   "4.1.1"    => 111,
@@ -100,6 +101,12 @@ couchbase_download_links = {
               "centos6"  => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64",
               "ubuntu10" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64_openssl098",
               "ubuntu12" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64",
+  },
+  "3.1.6-testing" => {
+              "centos6"    => "#{latest_builds}/couchbase-server-enterprise_centos6_x86_64_3.1.6-1895-rel",
+              "debian7"    => "#{latest_builds}/couchbase-server-enterprise_debian7_x86_64_3.1.6-1895-rel",
+              "opensuse11" => "#{latest_builds}/couchbase-server-enterprise_suse11_x86_64_3.1.6-1895-rel",
+              "ubuntu12"   => "#{latest_builds}/couchbase-server-enterprise_ubuntu_1204_x86_64_3.1.6-1895-rel",
   },
   "4.5.0-testing" => {
               "centos6"    => "#{watson_builds}/couchbase-server-enterprise-4.5.0-#{watson_build_num}-centos6.x86_64",
