@@ -38,6 +38,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "4.0.0"    => 100,
   "4.1.0"    => 110,
   "4.1.1"    => 111,
+  "4.1.2"    => 112,
   "4.5.0"    => 150,
   "4.5.1-testing" => 151,
   "cbdev"    => 200,
