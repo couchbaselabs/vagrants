@@ -155,7 +155,7 @@ use_dhcp = false
 
 # Name of the host endpoint to serve as bridge to local network
 #  (if not found vagrant will ask the user for each node)
-default_bridge = "wlan0"
+default_bridge = ["wlan0", "wlp1s0"]
 
 # Base for IP in public network. %d replaced by node number, eg "192.168.1.10%d" to get 101, 102, ...
 #  (once again, be careful of potential ip collisions!)
