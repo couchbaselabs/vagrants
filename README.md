@@ -161,7 +161,18 @@ base-box to libvirt.
 
     Make a note of the box name (`centos-6.5-64` here).
 
-3.  Use `vagrant mutate` to create a libvirt version of the box.
+3.  If you have not yet downloaded the box then the vagrant-mutate plugin will 
+    fail to find the box to convert. In this case you will want to manually 
+    download the box as covered in the 
+    [boxes](https://www.vagrantup.com/docs/getting-started/boxes.html) section of
+    the vagrant documentation.
+    For example:
+    
+    ```
+    $ vagrant box add centos-6.5-64
+    ```
+    
+4.  Use `vagrant mutate` to create a libvirt version of the box.
 
         $ vagrant mutate centos-6.5-64 libvirt
 
