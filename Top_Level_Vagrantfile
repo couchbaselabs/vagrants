@@ -42,7 +42,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "4.5.0"    => 150,
   "4.5.1"    => 151,
   "4.6.0" => 160,
-  "4.7.0-testing" => 170,
+  "5.0.0-testing" => 170,
   "cbdev"    => 200,
   "perfrunner" => 210,
 }
@@ -85,8 +85,11 @@ watson_build_num= "2816"
 watson_builds =  "https://s3.amazonaws.com/cb-support/watson-#{watson_build_num}"
 watson_next_build_num= "3558"
 watson_next_builds =  "https://s3.amazonaws.com/cb-support/watson-#{watson_next_build_num}"
-spock_build_num= "990"
-spock_builds =  "https://s3.amazonaws.com/cb-support/spock-#{spock_build_num}"
+
+# Requires VPN
+spock_build_num= "1725"
+spock_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server/spock/#{spock_build_num}/"
+
 couchbase_download_links = {
   "1.8.1" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_x86_64_#{version}",
   "2.0.1" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_x86_64_#{version}",
@@ -110,15 +113,15 @@ couchbase_download_links = {
               "ubuntu10" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64_openssl098",
               "ubuntu12" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64",
   },
-  "4.7.0-testing" => {
-              "centos6"    => "#{spock_builds}/couchbase-server-enterprise-4.7.0-#{spock_build_num}-centos6.x86_64",
-              "centos7"    => "#{spock_builds}/couchbase-server-enterprise-4.7.0-#{spock_build_num}-centos7.x86_64",
-              "debian7"    => "#{spock_builds}/couchbase-server-enterprise_4.7.0-#{spock_build_num}-debian7_amd64",
-              "debian8"    => "#{spock_builds}/couchbase-server-enterprise_4.7.0-#{spock_build_num}-debian8_amd64",
-              "opensuse11" => "#{spock_builds}/couchbase-server-enterprise-4.7.0-#{spock_build_num}-suse11.x86_64",
-              "opensuse12" => "#{spock_builds}/couchbase-server-enterprise-4.7.0-#{spock_build_num}-suse11.x86_64",
-              "ubuntu12"   => "#{spock_builds}/couchbase-server-enterprise_4.7.0-#{spock_build_num}-ubuntu12.04_amd64",
-              "ubuntu14"   => "#{spock_builds}/couchbase-server-enterprise_4.7.0-#{spock_build_num}-ubuntu14.04_amd64",
+  "5.0.0-testing" => {
+              "centos6"    => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-centos6.x86_64",
+              "centos7"    => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-centos7.x86_64",
+              "debian7"    => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-debian7_amd64",
+              "debian8"    => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-debian8_amd64",
+              "opensuse11" => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-suse11.x86_64",
+              "opensuse12" => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-suse11.x86_64",
+              "ubuntu12"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu12.04_amd64",
+              "ubuntu14"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu14.04_amd64",
   },
   "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-centos6.x86_64",
   "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-centos7.x86_64",
