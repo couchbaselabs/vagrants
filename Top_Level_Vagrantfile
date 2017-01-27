@@ -185,16 +185,20 @@ else
 end
 
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
-if couchbase_download_links.has_key?(version)
-  if couchbase_download_links[version].is_a?(String)
-    url = couchbase_download_links[version]
-  elsif couchbase_download_links[version].has_key?(operating_system)
-    url = couchbase_download_links[version][operating_system]
+unless ENV['VAGRANT_CB_DOWNLOAD'].nil?
+  url = ENV['VAGRANT_CB_DOWNLOAD']
+else
+  if couchbase_download_links.has_key?(version)
+    if couchbase_download_links[version].is_a?(String)
+      url = couchbase_download_links[version]
+    elsif couchbase_download_links[version].has_key?(operating_system)
+      url = couchbase_download_links[version][operating_system]
+    end
+  elsif couchbase_download_links.has_key?(operating_system)
+    url = couchbase_download_links[operating_system]
   end
-elsif couchbase_download_links.has_key?(operating_system)
-  url = couchbase_download_links[operating_system]
+  url ||= "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 end
-url ||= "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 
 puppet_location ||= "../.."
 

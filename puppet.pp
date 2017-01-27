@@ -9,7 +9,13 @@ $suffix = $operatingsystem ? {
     OpenSuSE => ".rpm",
 }
 
-$fullUrl = "$url$suffix"
+# Doublecheck this, as url may already include this if passed by ENV
+if $suffix in $url {
+  $fullUrl = "$url"
+} else {
+  $fullUrl = "$url$suffix"
+}
+
 $splitter = split($fullUrl, '/')
 $filename = $splitter[-1]
 
