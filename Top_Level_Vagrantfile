@@ -51,6 +51,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
 
   "5.0.0-testing" => 170,
   "5.0.0-Jan" => 171,
+  "5.0.0-Feb" => 172,
 
   "cbdev"    => 200,
   "perfrunner" => 210,
