@@ -97,7 +97,7 @@ watson_next_build_num= "3558"
 watson_next_builds =  "https://s3.amazonaws.com/cb-support/watson-#{watson_next_build_num}"
 
 # Requires VPN
-spock_build_num= "1928"
+spock_build_num= "2012"
 spock_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server/spock/#{spock_build_num}/"
 
 couchbase_download_links = {
