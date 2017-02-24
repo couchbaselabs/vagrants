@@ -70,10 +70,15 @@ elsif $operatingsystem == 'CentOS'{
   }
 }
 
+notice("Installing libssl for ${operatingsystem} ${operatingsystemrelease}")
 # Install libssl dependency
-package { "libssl0.9.8":
+package { "libssl":
     name => $operatingsystem ? {
-        Ubuntu => "libssl0.9.8",
+        Ubuntu => $::operatingsystemrelease ? {
+    		'10.04' => "libssl0.9.8",
+    		'12.04' => "libssl1.0.0",
+    		'14.04' => "libssl1.0.0",
+     		'16.04' => "libssl1.0.0"},
         CentOS => "openssl098e",
         Debian => "libssl1.0.0",
         OpenSuSE => "openssl",
