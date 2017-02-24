@@ -307,7 +307,7 @@ Vagrant.configure("2") do |config|
         if Vagrant.has_plugin?("landrush")
           puts "Private network (host only) : http://#{hostname % num}:8091/"
         else
-          puts "#{version} node#{num}: http://#{ip_address % num}:8091/"
+          puts "Private network (host only) : http://#{ip_address % num}:8091/"
         end
       end
       node.vm.hostname = hostname % num
