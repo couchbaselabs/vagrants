@@ -184,13 +184,17 @@ end
 unless ENV['VAGRANT_CPUS'].nil? || ENV['VAGRANT_CPUS'] == 0
   num_cpus = ENV['VAGRANT_CPUS'].to_i
 else
-  num_cpus = default_number_of_cpus
+  if num_cpus.nil?
+    num_cpus = default_number_of_cpus
+  end
 end
 
 unless ENV['VAGRANT_RAM'].nil? || ENV['VAGRANT_RAM'] == 0
   ram_in_MB = ENV['VAGRANT_RAM'].to_i
 else
-  ram_in_MB = default_RAM_in_MB
+  if ram_in_MB.nil?
+    ram_in_MB = default_RAM_in_MB
+  end
 end
 
 unless ENV['VAGRANT_VPN'].nil?

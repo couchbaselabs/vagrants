@@ -1,5 +1,7 @@
 puppet_location = "."
 num_nodes = 1
+num_cpus = 4
+ram_in_MB = 4096
 # Read and execute the top level Vagrantfile
 Dir.chdir File.dirname(__FILE__)
 external = File.read '../../Top_Level_Vagrantfile'
