@@ -101,7 +101,7 @@ watson_next_build_num= "3558"
 watson_next_builds =  "https://s3.amazonaws.com/cb-support/watson-#{watson_next_build_num}"
 
 # Requires VPN
-spock_build_num= "2412"
+spock_build_num= "2634"
 spock_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server/spock/#{spock_build_num}/"
 
 couchbase_download_links = {
@@ -133,7 +133,7 @@ couchbase_download_links = {
               "debian7"    => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-debian7_amd64",
               "debian8"    => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-debian8_amd64",
               "opensuse11" => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-suse11.x86_64",
-              "opensuse12" => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-suse11.x86_64",
+              "opensuse12" => "#{spock_builds}/couchbase-server-enterprise-5.0.0-#{spock_build_num}-suse12.x86_64",
               "ubuntu12"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu12.04_amd64",
               "ubuntu14"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu14.04_amd64",
               "ubuntu16"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu16.04_amd64",
