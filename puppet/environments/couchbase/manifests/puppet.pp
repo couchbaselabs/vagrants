@@ -3,10 +3,10 @@
 # ===
 
 $suffix = $operatingsystem ? {
-    Ubuntu => ".deb",
-    CentOS => ".rpm",
-    Debian => ".deb",
-    OpenSuSE => ".rpm",
+    'Ubuntu' => ".deb",
+    'CentOS' => ".rpm",
+    'Debian' => ".deb",
+    'OpenSuSE' => ".rpm",
 }
 
 # Doublecheck this, as url may already include this if passed by ENV
@@ -74,14 +74,14 @@ notice("Installing libssl for ${operatingsystem} ${operatingsystemrelease}")
 # Install libssl dependency
 package { "libssl":
     name => $operatingsystem ? {
-        Ubuntu => $::operatingsystemrelease ? {
+        'Ubuntu' => $::operatingsystemrelease ? {
     		'10.04' => "libssl0.9.8",
     		'12.04' => "libssl1.0.0",
     		'14.04' => "libssl1.0.0",
      		'16.04' => "libssl1.0.0"},
-        CentOS => "openssl098e",
-        Debian => "libssl1.0.0",
-        OpenSuSE => "openssl",
+        'CentOS' => "openssl098e",
+        'Debian' => "libssl1.0.0",
+        'OpenSuSE' => "openssl",
     },
     ensure => present,
     before => Package["couchbase-server"]
@@ -90,10 +90,10 @@ package { "libssl":
 # Install Couchbase Server
 package { "couchbase-server":
     provider => $operatingsystem ? {
-        Ubuntu => dpkg,
-        CentOS => rpm,
-        Debian => dpkg,
-        OpenSuSE => rpm,
+        'Ubuntu' => dpkg,
+        'CentOS' => rpm,
+        'Debian' => dpkg,
+        'OpenSuSE' => rpm,
     },
     ensure => installed,
     source => "/vagrant/$filename",

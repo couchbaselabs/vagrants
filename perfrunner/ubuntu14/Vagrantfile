@@ -1,4 +1,3 @@
-puppet_location = "."
 num_nodes = 1
 # Read and execute the top level Vagrantfile
 Dir.chdir File.dirname(__FILE__)
