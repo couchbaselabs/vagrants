@@ -54,7 +54,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "5.0.0-testing" => 170,
   # Cycle new DBs between 171 and 172
   "5.0.0-Mar" => 171,
-  "5.0.0-Feb" => 172,
+  "5.0.0-Apr" => 172,
 
   "cbdev"    => 200,
   "perfrunner" => 210,
