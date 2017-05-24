@@ -56,6 +56,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   # Cycle new DBs between 171 and 172
   "5.0.0-Mar" => 171,
   "5.0.0-Apr" => 172,
+  "5.0.0-beta" => 173,
 
   "cbdev"    => 200,
   "perfrunner" => 210,
@@ -138,6 +139,17 @@ couchbase_download_links = {
               "ubuntu12"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu12.04_amd64",
               "ubuntu14"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu14.04_amd64",
               "ubuntu16"   => "#{spock_builds}/couchbase-server-enterprise_5.0.0-#{spock_build_num}-ubuntu16.04_amd64",
+  },
+  "5.0.0-beta" => {
+              "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-5.0.0-beta-centos6.x86_64",
+              "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-5.0.0-beta-centos7.x86_64",
+              "debian7"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_5.0.0-beta-debian7_amd64",
+              "debian8"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_5.0.0-beta-debian8_amd64",
+              "opensuse11" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-5.0.0-beta-suse11.x86_64",
+              "opensuse12" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-5.0.0-beta-suse12.x86_64",
+              "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_5.0.0-beta-ubuntu12.04_amd64",
+              "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_5.0.0-beta-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_5.0.0-beta-ubuntu16.04_amd64",
   },
   "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-centos6.x86_64",
   "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-centos7.x86_64",
