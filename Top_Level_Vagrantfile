@@ -56,6 +56,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   # Cycle new DBs between 171 and 172
   "5.0.0-Mar" => 171,
   "5.0.0-Apr" => 172,
+  "5.0.0-beta" => 173,
 
   "cbdev"    => 200,
   "perfrunner" => 210,
@@ -147,6 +148,7 @@ couchbase_download_links = {
   "opensuse12" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-suse11.x86_64",
   "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu12.04_amd64",
   "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu14.04_amd64",
+  "ubuntu16"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu16.04_amd64",
 }
 
 default_number_of_nodes = 4
