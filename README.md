@@ -51,6 +51,7 @@ Base range:10.xxx.yyy.10n where xxx and yyy are based on the Operating System an
 |         4.1.1 | 111 |
 |     4.5.0-DP1 | 150 |
 | 4.5.0-testing | 151 |
+| 5.0.0-beta | 173 |
 |         cbdev | 200 |
 
 Thus the first Ubuntu12 box running 3.0.3 will have the IP Address 10.141.83.101, and the second Centos6 box running version 4.0.0 will have 10.111.100.102.
