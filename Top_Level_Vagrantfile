@@ -7,6 +7,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "centos5"  => 110,
   "centos6"  => 111,
   "centos7"  => 112,
+  "centos7u2"  => 114,
   "centos6u4" => 113,
   "debian7"  => 120,
   "debian8"  => 121,
@@ -81,6 +82,10 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "centos7"  => { "box_name" => "puppetlabs/centos-7.0-64-puppet",
                   "box_version" => "1.0.1"
                 },
+  "centos7u2"  => { "box_name" => "puppetlabs/centos-7.2-64-puppet",
+                  "box_version" => "1.0.1"
+                },
+
   "windows"  => "emyl/win2008r2",
   "opensuse11"  => "minesense/opensuse11.1",
   "opensuse12"   => {"box_name" => "opensuse-12.3-64",
