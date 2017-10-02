@@ -18,6 +18,15 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "ubuntu16" => 143,
   "windows"  => 150,
 
+  # Sync Gateway
+  "1.3.0" => 10,
+  "1.3.1" => 11,
+  "1.4.0" => 14,
+  "1.4.1" => 15,
+  "1.5.0" => 20,
+
+  # Couchbase Server
+
   "1.8.1"    => 51,
 
   "2.0.1"    => 56,
@@ -90,12 +99,27 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "debian8"  => "lazyfrosch/debian-8-jessie-amd64-puppet",
 }
 
+sg_builds = {
+  "1.3.0" => 0,
+  "1.3.1" => 0,
+  "1.4.0" => 0,
+  "1.4.1" => 3,
+}
+
 # Collect the names of the working directory and its parent (os and cb version)
 operating_system = File.basename(Dir.getwd)
 version  ||= File.basename(File.expand_path('..'))
+is_sync_gateway =  File.basename(File.expand_path('../..')) == "sync_gateway"
+if is_sync_gateway
+  sg_build = sg_builds[version]
+  port = "4984"
+else
+  port = "8091"
+end
 
 # Couchbase Server Version download links
 couchbase_releases = "http://packages.couchbase.com/releases"
+sync_gateway_releases = "#{couchbase_releases}/couchbase-sync-gateway"
 latest_builds = "http://latestbuilds.hq.couchbase.com"
 sherlock_builds = "#{latest_builds}/couchbase-server/sherlock"
 watson_build_num= "2816"
@@ -150,6 +174,14 @@ couchbase_download_links = {
   "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu12.04_amd64",
   "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu14.04_amd64",
   "ubuntu16"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu16.04_amd64",
+}
+
+sync_gateway_download_links = {
+  "centos6"    => "#{sync_gateway_releases}/#{version}/couchbase-sync-gateway-enterprise_#{version}-#{sg_build}_x86_64",
+  "centos7"    => "#{sync_gateway_releases}/#{version}/couchbase-sync-gateway-enterprise_#{version}-#{sg_build}_x86_64",
+  "ubuntu12"   => "#{sync_gateway_releases}/#{version}/couchbase-sync-gateway-enterprise_#{version}-#{sg_build}_x86_64",
+  "ubuntu14"   => "#{sync_gateway_releases}/#{version}/couchbase-sync-gateway-enterprise_#{version}-#{sg_build}_x86_64",
+  "ubuntu16"   => "#{sync_gateway_releases}/#{version}/couchbase-sync-gateway-enterprise_#{version}-#{sg_build}_x86_64",
 }
 
 default_number_of_nodes = 4
@@ -211,16 +243,20 @@ end
 unless ENV['VAGRANT_CB_DOWNLOAD'].nil?
   url = ENV['VAGRANT_CB_DOWNLOAD']
 else
-  if couchbase_download_links.has_key?(version)
-    if couchbase_download_links[version].is_a?(String)
-      url = couchbase_download_links[version]
-    elsif couchbase_download_links[version].has_key?(operating_system)
-      url = couchbase_download_links[version][operating_system]
+  unless is_sync_gateway
+    if couchbase_download_links.has_key?(version)
+      if couchbase_download_links[version].is_a?(String)
+        url = couchbase_download_links[version]
+      elsif couchbase_download_links[version].has_key?(operating_system)
+        url = couchbase_download_links[version][operating_system]
+      end
+    elsif couchbase_download_links.has_key?(operating_system)
+      url = couchbase_download_links[operating_system]
     end
-  elsif couchbase_download_links.has_key?(operating_system)
-    url = couchbase_download_links[operating_system]
+    url ||= "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64"
+  else
+    url = sync_gateway_download_links[operating_system]
   end
-  url ||= "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64"
 end
 
 puppet_location ||= "../.."
@@ -315,9 +351,9 @@ Vagrant.configure("2") do |config|
       else
         node.vm.network :private_network, :ip => ip_address % num
         if Vagrant.has_plugin?("landrush")
-          puts "Private network (host only) : http://#{hostname % num}:8091/"
+          puts "Private network (host only) : http://#{hostname % num}:#{port}/"
         else
-          puts "Private network (host only) : http://#{ip_address % num}:8091/"
+          puts "Private network (host only) : http://#{ip_address % num}:#{port}/"
         end
       end
       node.vm.hostname = hostname % num
