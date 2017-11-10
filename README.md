@@ -1,4 +1,4 @@
-#Vagrant files for Couchbase Server VMS
+# Vagrant files for Couchbase Server VMS
 
 System for quickly and painlessly provisioning Couchbase Server virtual machines across multiple Couchbase versions and OS's.
 ## Starting a Couchbase cluster
