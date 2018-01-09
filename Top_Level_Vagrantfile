@@ -102,7 +102,7 @@ couchbase_releases = "http://packages.couchbase.com/releases"
 latest_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server/"
 spock_build_num= "5510"
 spock_builds =  "#{latest_builds}/spock/#{spock_build_num}/"
-vulcan_build_num= "1579"
+vulcan_build_num= "1632"
 vulcan_builds =  "#{latest_builds}/vulcan/#{vulcan_build_num}/"
 
 couchbase_download_links = {
