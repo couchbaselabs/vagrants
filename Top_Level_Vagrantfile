@@ -107,7 +107,7 @@ watson_build_num= "4602"
 watson_builds =  "#{latest_builds}/watson/#{watson_build_num}/"
 spock_build_num= "5552"
 spock_builds =  "#{latest_builds}/spock/#{spock_build_num}/"
-vulcan_build_num= "1911"
+vulcan_build_num= "1979"
 vulcan_builds =  "#{latest_builds}/vulcan/#{vulcan_build_num}/"
 
 couchbase_download_links = {
