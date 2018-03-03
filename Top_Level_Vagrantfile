@@ -304,6 +304,7 @@ Vagrant.configure("2") do |config|
   # Check to see if the VM is not running Windows and provision with puppet
   if !(operating_system.include?("win"))
     if (operating_system.include?("ubuntu16"))
+      config.vm.provision "shell", inline: "apt-get update"
       config.vm.provision "shell", inline: "apt-get install -y puppet"
     end
     # Provision the server itself with puppet
