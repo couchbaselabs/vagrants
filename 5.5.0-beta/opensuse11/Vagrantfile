@@ -1,0 +1,6 @@
+# 5.5.0-beta requires 2.5GB to startup (sadpanda)
+ram_in_MB = 2560
+# Read and execute the top level Vagrantfile
+Dir.chdir File.dirname(__FILE__)
+external = File.read '../../Top_Level_Vagrantfile'
+eval external
