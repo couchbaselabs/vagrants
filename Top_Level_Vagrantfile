@@ -64,7 +64,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "spock-testing" => 177,
 
   "5.5.0" => 180,
-  "vulcan-testing" => 181,
+  "5.5.1" => 181,
+  "vulcan-testing" => 182,
 
   "alice-testing" => 190,
   "mad-hatter-testing" => 191,
