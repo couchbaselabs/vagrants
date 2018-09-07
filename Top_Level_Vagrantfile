@@ -401,6 +401,9 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  if(operating_system.include?("centos7")) # If Centos7 bouncing network because of https://github.com/hashicorp/vagrant/issues/8096
+    config.vm.provision "shell", inline: "service network restart", run: "always"
+  end
 end
 rescue
 end
