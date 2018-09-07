@@ -79,7 +79,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                },
   "ubuntu12" => "hashicorp/precise64",
   "ubuntu14" => "ubuntu/trusty64",
-  "ubuntu16" => "ubuntu/xenial64",
+  "ubuntu16" => "puppetlabs/ubuntu-16.04-64-puppet",
   "debian7"  => "cargomedia/debian-7-amd64-default",
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
@@ -334,9 +334,6 @@ Vagrant.configure("2") do |config|
 
   # Check to see if the VM is not running Windows and provision with puppet
   if !(operating_system.include?("win"))
-    if (operating_system.include?("ubuntu16"))
-      config.vm.provision "shell", inline: "apt-get install -y puppet"
-    end
     # Provision the server itself with puppet
     config.vm.provision "puppet" do |puppet|
       puppet.manifests_path = puppet_location # Define a custom location and name for the puppet file
