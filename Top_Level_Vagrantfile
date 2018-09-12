@@ -61,7 +61,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
 
   "5.1.0" => 175,
   "5.1.1" => 176,
-  "spock-testing" => 177,
+  "5.1.2" => 177,
+  "spock-testing" => 178,
 
   "5.5.0" => 180,
   "5.5.1" => 181,
