@@ -114,17 +114,17 @@ version  ||= File.basename(File.expand_path('..'))
 couchbase_releases = "http://packages.couchbase.com/releases"
 
 # Requires VPN
-latest_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server/"
+latest_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server"
 watson_build_num= "4741"
-watson_builds =  "#{latest_builds}/watson/#{watson_build_num}/"
+watson_builds =  "#{latest_builds}/watson/#{watson_build_num}"
 spock_build_num= "5721"
-spock_builds =  "#{latest_builds}/spock/#{spock_build_num}/"
+spock_builds =  "#{latest_builds}/spock/#{spock_build_num}"
 vulcan_build_num= "2958"
-vulcan_builds =  "#{latest_builds}/vulcan/#{vulcan_build_num}/"
+vulcan_builds =  "#{latest_builds}/vulcan/#{vulcan_build_num}"
 alice_build_num= "1693"
-alice_builds =  "#{latest_builds}/alice/#{alice_build_num}/"
+alice_builds =  "#{latest_builds}/alice/#{alice_build_num}"
 mad_hatter_build_num= "1931"
-mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}/"
+mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
 
 couchbase_download_links = {
   "1.8.1" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_x86_64_#{version}",
