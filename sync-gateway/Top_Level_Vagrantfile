@@ -1,0 +1,255 @@
+# System for quickly and painlessly provisioning Couchbase Sync Gateway virtual machines across multiple SG versions and OS's.
+# See README.md for usage instructions
+
+### Variable declarations - FEEL FREE TO EDIT THESE ###
+begin
+ip_addresses = { # Values for both OS's and SG versions that are cat'd together to form a full ip address
+
+###
+# OS IP ranges (___.xxx.___.___)
+###
+
+  "centos7"  => 112,
+
+
+###
+# SG IP ranges (___.___.yyy.___)
+###
+  
+#  "1.3.0" => 30,
+#  "1.3.1" => 31,
+
+#  "1.4.0" => 40,
+#  "1.4.1" => 41,
+
+#  "1.5.0" => 50,
+#  "1.5.1" => 51,
+#  "1.5.2" => 52,
+
+#  "2.0.0" => 60,
+
+#  "2.1.0" => 70,
+#  "2.1.1" => 71,
+#  "2.1.2" => 72,
+#  "2.1.3" => 73,
+#  "2.1.4" => 74,
+
+  "2.5.0" => 80,
+
+}
+
+vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
+  "centos7"  => { "box_name" => "puppetlabs/centos-7.0-64-puppet",
+                  "box_version" => "1.0.1"
+                },
+}
+
+# Collect the names of the working directory and its parent (os and cb version)
+operating_system = File.basename(Dir.getwd)
+version  ||= File.basename(File.expand_path('..'))
+
+# Couchbase Server Version download links
+sync_gateway_releases = "https://packages.couchbase.com/releases/couchbase-sync-gateway"
+
+sync_gateway_download_links = {
+  "centos7"    => "#{sync_gateway_releases}/#{version}/couchbase-sync-gateway-enterprise_#{version}_x86_64",
+}
+
+default_number_of_nodes = 1
+default_RAM_in_MB = 1024
+default_number_of_cpus = 1
+
+## Edit these to allow other machines in your network to access the VMs
+
+# Set to true to activate non-host access
+#  make sure no one else will be impacted by this, as VMs will have forced ip that could collide
+#  (typically you should be close to alone on the LAN, with a few machines, ie at home)
+# alternatively set use_dhcp to true to avoid this (at the cost of not knowing the IP in advance)
+public_lan = false
+use_dhcp = false
+
+# Name of the host endpoint to serve as bridge to local network
+#  (if not found vagrant will ask the user for each node)
+default_bridge = ["wlan0", "wlp1s0"]
+
+# Base for IP in public network. %d replaced by node number, eg "192.168.1.10%d" to get 101, 102, ...
+#  (once again, be careful of potential ip collisions!)
+public_ip_base = "192.168.1.10%d"
+
+
+### DO NOT EDIT BELOW THIS LINE
+
+# Number of nodes to provision
+unless ENV['SG_VAGRANT_NODES'].nil? || ENV['SG_VAGRANT_NODES'] == 0
+  num_nodes = ENV['SG_VAGRANT_NODES'].to_i
+else
+  if num_nodes.nil?
+    num_nodes = default_number_of_nodes
+  end
+end
+
+unless ENV['SG_VAGRANT_CPUS'].nil? || ENV['SG_VAGRANT_CPUS'] == 0
+  num_cpus = ENV['SG_VAGRANT_CPUS'].to_i
+else
+  if num_cpus.nil?
+    num_cpus = default_number_of_cpus
+  end
+end
+
+unless ENV['SG_VAGRANT_RAM'].nil? || ENV['SG_VAGRANT_RAM'] == 0
+  ram_in_MB = ENV['SG_VAGRANT_RAM'].to_i
+else
+  if ram_in_MB.nil?
+    ram_in_MB = default_RAM_in_MB
+  end
+end
+
+unless ENV['VAGRANT_VPN'].nil?
+  vpn = "on"
+else
+  vpn = "off"
+end
+
+# Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
+unless ENV['VAGRANT_SG_DOWNLOAD'].nil?
+  url = ENV['VAGRANT_SG_DOWNLOAD']
+else
+  if sync_gateway_download_links.has_key?(version)
+    if sync_gateway_download_links[version].is_a?(String)
+      url = sync_gateway_download_links[version]
+    elsif sync_gateway_download_links[version].has_key?(operating_system)
+      url = sync_gateway_download_links[version][operating_system]
+    end
+  elsif sync_gateway_download_links.has_key?(operating_system)
+    url = sync_gateway_download_links[operating_system]
+  end
+end
+
+puppet_location ||= "../.."
+
+# Check to see if a custom ip address has been given, if not generate one
+if (defined?(ip)).nil?
+  ip_address = "10." + String(ip_addresses[operating_system]) + "." + String(ip_addresses[version]) + ".10%d"
+end
+
+# Generate a hostname template
+hostname = "#{version.gsub '.', ''}-#{operating_system}.vagrants"
+if hostname =~ /^[0-9]/
+  hostname.prepend("sg")
+end
+hostname.prepend("node%d-")
+
+# Check to see if the vagrant command given was 'up', if so print a handy dialogue
+if ARGV[0] == "up" && !ARGV[1]
+  puts "\e[32m=== Upping #{num_nodes} node(s) on #{operating_system} and sg version #{version} ==="
+end
+
+### Start the vagrant configuration ###
+Vagrant.configure("2") do |config|
+
+  # Define VM properties for each node (for both virtualbox and
+  # libvirt providers).
+  config.vm.provider :virtualbox do |vb|
+    vb.memory = ram_in_MB
+    vb.cpus = num_cpus
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "#{vpn}"]
+    vb.linked_clone = true if Vagrant::VERSION >= "1.8.0"
+    vb.destroy_unused_network_interfaces = true
+  end
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.memory = ram_in_MB
+    libvirt.cpus = num_cpus
+  end
+
+  config.vm.synced_folder ENV['HOME'], "/vmhost_home/"
+
+  # Define the vagrant box download location
+  if !(vagrant_boxes[operating_system]["box_url"].nil?)
+    config.vm.box_url = vagrant_boxes[operating_system]["box_url"]
+  end
+
+  # Define the vagrant box name
+  if !(vagrant_boxes[operating_system]["box_name"].nil?)
+    box_name = vagrant_boxes[operating_system]["box_name"]
+  else
+    box_name = vagrant_boxes[operating_system]
+  end
+
+  # Define the box version if specified - default to most recent
+  if !(vagrant_boxes[operating_system]["box_version"].nil?)
+    box_version = vagrant_boxes[operating_system]["box_version"]
+  end
+
+  # Check to see if the VM is not running Windows and provision with puppet
+  if !(operating_system.include?("win"))
+    # Provision the server itself with puppet
+    config.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = puppet_location # Define a custom location and name for the puppet file
+      puppet.manifest_file = "puppet.pp"
+      puppet.facter = { # Pass variables to puppet
+        "version" => version, # Sync Gateway version
+        "url" => url, # Sync Gateway download location
+      }
+    end
+  end
+
+  # Provision Config for each of the nodes
+  1.upto(num_nodes) do |num|
+    config.vm.define "node#{num}" do |node|
+      node.vm.box = box_name
+      if !(box_version.nil?)
+        node.vm.box_version = box_version
+      end
+      if Vagrant.has_plugin?("vagrant-cachier")
+        # Configure cached packages to be shared between instances of the same base box.
+        config.cache.scope = :box
+      end
+      if public_lan && use_dhcp
+        node.vm.network :public_network, :bridge => default_bridge
+        puts "Public LAN ip obtained via DHCP, find it by connecting to the node: vagrant ssh node#{num}"
+      elsif public_lan
+       node.vm.network :public_network, :bridge => default_bridge, :ip =>  public_ip_base % num
+       puts "Public LAN ip : #{public_ip_base % num}"
+      else
+        node.vm.network :private_network, :ip => ip_address % num
+        if Vagrant.has_plugin?("landrush")
+          puts "Private network (host only) : http://#{hostname % num}:4984/"
+        else
+          puts "Private network (host only) : http://#{ip_address % num}:4984/"
+        end
+      end
+      node.vm.hostname = hostname % num
+      node.vm.provider "virtualbox" do |v|
+        v.name = "Sync Gateway #{version} #{operating_system.gsub '/', '_'} Node #{num}"
+        if(operating_system.include?("win")) # If the VM is running Windows it will start with a GUI
+          v.gui = true
+        end
+      end
+      if Vagrant.has_plugin?("landrush")
+        node.landrush.enabled = true
+        node.landrush.tld = "vagrants"
+      end
+      # Postfix a random value to hostname to uniquify it.
+      node.vm.provider "libvirt" do |v|
+        v.random_hostname = true
+      end
+    end
+  end
+
+  if ARGV[0] == "up" && !ARGV[1]
+    if public_lan && use_dhcp
+      puts "\e[32m=== Upping #{num_nodes} node(s) on public LAN via DHCP ==="
+    elsif public_lan
+      puts "\e[32m=== Upping #{num_nodes} node(s) on public LAN IPs #{public_ip_base.sub('%d','')}{1..#{num_nodes}} ==="
+    else
+      puts "\e[32m=== Upping #{num_nodes} node(s) on IPs #{ip_address.sub('%d','')}{1..#{num_nodes}} ==="
+    end
+  end
+
+  if(operating_system.include?("centos7")) # If Centos7 bouncing network because of https://github.com/hashicorp/vagrant/issues/8096
+    config.vm.provision "shell", inline: "service network restart", run: "always"
+  end
+end
+rescue
+end
