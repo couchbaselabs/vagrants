@@ -71,11 +71,11 @@ elsif $operatingsystem == 'CentOS'{
   notice("Fixing SFTP for ${operatingsystem} ${operatingsystemrelease}")
   exec { 'Fix SFTP':
          command => "sed -i 's|/usr/lib/openssh/sftp-server|internal-sftp|g' /etc/ssh/sshd_config",
-         path => "/usr/bin"
+         path => "/bin"
   }
   exec { "service sshd reload":
          require => Exec['Fix SFTP'],
-         path => "/usr/sbin"
+         path => "/sbin"
   }
 
   # Install pkgconfig (not all CentOS base boxes have it).
