@@ -127,7 +127,7 @@ vulcan_build_num= "4302"
 vulcan_builds =  "#{latest_builds}/vulcan/#{vulcan_build_num}"
 alice_build_num= "2037"
 alice_builds =  "#{latest_builds}/alice/#{alice_build_num}"
-mad_hatter_build_num= "3821"
+mad_hatter_build_num= "4380"
 mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
 
 couchbase_download_links = {
