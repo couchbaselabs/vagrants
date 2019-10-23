@@ -195,6 +195,16 @@ couchbase_download_links = {
               "ubuntu14"   => "#{vulcan_builds}/couchbase-server-community_5.5.4-#{vulcan_build_num}-ubuntu14.04_amd64",
               "ubuntu16"   => "#{vulcan_builds}/couchbase-server-community_5.5.4-#{vulcan_build_num}-ubuntu16.04_amd64",
   },
+  "vulcan-community" => {
+              "centos6"    => "#{vulcan_builds}/couchbase-server-community-5.5.2-#{vulcan_build_num}-centos6.x86_64",
+              "centos7"    => "#{vulcan_builds}/couchbase-server-community-5.5.2-#{vulcan_build_num}-centos7.x86_64",
+              "debian8"    => "#{vulcan_builds}/couchbase-server-community_5.5.2-#{vulcan_build_num}-debian8_amd64",
+              "debian9"    => "#{vulcan_builds}/couchbase-server-community_5.5.2-#{vulcan_build_num}-debian9_amd64",
+              "opensuse11" => "#{vulcan_builds}/couchbase-server-community-5.5.2-#{vulcan_build_num}-suse11.x86_64",
+              "opensuse12" => "#{vulcan_builds}/couchbase-server-community-5.5.2-#{vulcan_build_num}-suse12.x86_64",
+              "ubuntu14"   => "#{vulcan_builds}/couchbase-server-community_5.5.2-#{vulcan_build_num}-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{vulcan_builds}/couchbase-server-community_5.5.2-#{vulcan_build_num}-ubuntu16.04_amd64",
+  },
   "alice-testing" => {
               "centos6"    => "#{alice_builds}/couchbase-server-enterprise-6.0.1-#{alice_build_num}-centos6.x86_64",
               "centos7"    => "#{alice_builds}/couchbase-server-enterprise-6.0.1-#{alice_build_num}-centos7.x86_64",
@@ -214,6 +224,16 @@ couchbase_download_links = {
               "opensuse12" => "#{alice_builds}/couchbase-server-community-6.0.1-#{alice_build_num}-suse12.x86_64",
               "ubuntu14"   => "#{alice_builds}/couchbase-server-community_6.0.1-#{alice_build_num}-ubuntu14.04_amd64",
               "ubuntu16"   => "#{alice_builds}/couchbase-server-community_6.0.1-#{alice_build_num}-ubuntu16.04_amd64",
+  },
+  "alice-community" => {
+              "centos6"    => "#{alice_builds}/couchbase-server-community-6.0.3-#{alice_build_num}-centos6.x86_64",
+              "centos7"    => "#{alice_builds}/couchbase-server-community-6.0.3-#{alice_build_num}-centos7.x86_64",
+              "debian8"    => "#{alice_builds}/couchbase-server-community_6.0.3-#{alice_build_num}-debian8_amd64",
+              "debian9"    => "#{alice_builds}/couchbase-server-community_6.0.3-#{alice_build_num}-debian9_amd64",
+              "opensuse11" => "#{alice_builds}/couchbase-server-community-6.0.3-#{alice_build_num}-suse11.x86_64",
+              "opensuse12" => "#{alice_builds}/couchbase-server-community-6.0.3-#{alice_build_num}-suse12.x86_64",
+              "ubuntu14"   => "#{alice_builds}/couchbase-server-community_6.0.3-#{alice_build_num}-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{alice_builds}/couchbase-server-community_6.0.3-#{alice_build_num}-ubuntu16.04_amd64",
   },
   "mad-hatter-testing" => {
               "centos7"    => "#{mad_hatter_builds}/couchbase-server-enterprise-6.5.0-#{mad_hatter_build_num}-centos7.x86_64",
