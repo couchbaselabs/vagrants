@@ -119,6 +119,15 @@ version  ||= File.basename(File.expand_path('..'))
 # Couchbase Server Version download links
 couchbase_releases = "http://packages.couchbase.com/releases"
 
+# Defaults to Enterprise Edition unless overridden
+unless ENV['VAGRANT_EDITION'].nil?
+  edition = ENV['VAGRANT_EDITION']
+end
+
+if edition.nil? || (!['community', 'enterprise'].include? edition)
+  edition = "enterprise"
+end
+
 # Requires VPN
 latest_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server"
 watson_build_num= "4741"
@@ -156,63 +165,63 @@ couchbase_download_links = {
               "ubuntu12" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}_x86_64",
   },
   "watson-testing" => {
-              "centos6"    => "#{watson_builds}/couchbase-server-enterprise-4.6.5-#{watson_build_num}-centos6.x86_64",
-              "centos7"    => "#{watson_builds}/couchbase-server-enterprise-4.6.5-#{watson_build_num}-centos7.x86_64",
-              "debian7"    => "#{watson_builds}/couchbase-server-enterprise_4.6.5-#{watson_build_num}-debian7_amd64",
-              "debian8"    => "#{watson_builds}/couchbase-server-enterprise_4.6.5-#{watson_build_num}-debian8_amd64",
-              "opensuse11" => "#{watson_builds}/couchbase-server-enterprise-4.6.5-#{watson_build_num}-suse11.x86_64",
-              "ubuntu12"   => "#{watson_builds}/couchbase-server-enterprise_4.6.5-#{watson_build_num}-ubuntu12.04_amd64",
-              "ubuntu14"   => "#{watson_builds}/couchbase-server-enterprise_4.6.5-#{watson_build_num}-ubuntu14.04_amd64",
+              "centos6"    => "#{watson_builds}/couchbase-server-#{edition}-4.6.5-#{watson_build_num}-centos6.x86_64",
+              "centos7"    => "#{watson_builds}/couchbase-server-#{edition}-4.6.5-#{watson_build_num}-centos7.x86_64",
+              "debian7"    => "#{watson_builds}/couchbase-server-#{edition}_4.6.5-#{watson_build_num}-debian7_amd64",
+              "debian8"    => "#{watson_builds}/couchbase-server-#{edition}_4.6.5-#{watson_build_num}-debian8_amd64",
+              "opensuse11" => "#{watson_builds}/couchbase-server-#{edition}-4.6.5-#{watson_build_num}-suse11.x86_64",
+              "ubuntu12"   => "#{watson_builds}/couchbase-server-#{edition}_4.6.5-#{watson_build_num}-ubuntu12.04_amd64",
+              "ubuntu14"   => "#{watson_builds}/couchbase-server-#{edition}_4.6.5-#{watson_build_num}-ubuntu14.04_amd64",
   },
   "spock-testing" => {
-              "centos6"    => "#{spock_builds}/couchbase-server-enterprise-5.1.1-#{spock_build_num}-centos6.x86_64",
-              "centos7"    => "#{spock_builds}/couchbase-server-enterprise-5.1.1-#{spock_build_num}-centos7.x86_64",
-              "debian7"    => "#{spock_builds}/couchbase-server-enterprise_5.1.1-#{spock_build_num}-debian7_amd64",
-              "debian8"    => "#{spock_builds}/couchbase-server-enterprise_5.1.1-#{spock_build_num}-debian8_amd64",
-              "opensuse11" => "#{spock_builds}/couchbase-server-enterprise-5.1.1-#{spock_build_num}-suse11.x86_64",
-              "opensuse12" => "#{spock_builds}/couchbase-server-enterprise-5.1.1-#{spock_build_num}-suse12.x86_64",
-              "ubuntu14"   => "#{spock_builds}/couchbase-server-enterprise_5.1.1-#{spock_build_num}-ubuntu14.04_amd64",
-              "ubuntu16"   => "#{spock_builds}/couchbase-server-enterprise_5.1.1-#{spock_build_num}-ubuntu16.04_amd64",
+              "centos6"    => "#{spock_builds}/couchbase-server-#{edition}-5.1.1-#{spock_build_num}-centos6.x86_64",
+              "centos7"    => "#{spock_builds}/couchbase-server-#{edition}-5.1.1-#{spock_build_num}-centos7.x86_64",
+              "debian7"    => "#{spock_builds}/couchbase-server-#{edition}_5.1.1-#{spock_build_num}-debian7_amd64",
+              "debian8"    => "#{spock_builds}/couchbase-server-#{edition}_5.1.1-#{spock_build_num}-debian8_amd64",
+              "opensuse11" => "#{spock_builds}/couchbase-server-#{edition}-5.1.1-#{spock_build_num}-suse11.x86_64",
+              "opensuse12" => "#{spock_builds}/couchbase-server-#{edition}-5.1.1-#{spock_build_num}-suse12.x86_64",
+              "ubuntu14"   => "#{spock_builds}/couchbase-server-#{edition}_5.1.1-#{spock_build_num}-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{spock_builds}/couchbase-server-#{edition}_5.1.1-#{spock_build_num}-ubuntu16.04_amd64",
   },
   "vulcan-testing" => {
-              "centos6"    => "#{vulcan_builds}/couchbase-server-enterprise-5.5.4-#{vulcan_build_num}-centos6.x86_64",
-              "centos7"    => "#{vulcan_builds}/couchbase-server-enterprise-5.5.4-#{vulcan_build_num}-centos7.x86_64",
-              "debian8"    => "#{vulcan_builds}/couchbase-server-enterprise_5.5.4-#{vulcan_build_num}-debian8_amd64",
-              "debian9"    => "#{vulcan_builds}/couchbase-server-enterprise_5.5.4-#{vulcan_build_num}-debian9_amd64",
-              "opensuse11" => "#{vulcan_builds}/couchbase-server-enterprise-5.5.4-#{vulcan_build_num}-suse11.x86_64",
-              "opensuse12" => "#{vulcan_builds}/couchbase-server-enterprise-5.5.4-#{vulcan_build_num}-suse12.x86_64",
-              "ubuntu14"   => "#{vulcan_builds}/couchbase-server-enterprise_5.5.4-#{vulcan_build_num}-ubuntu14.04_amd64",
-              "ubuntu16"   => "#{vulcan_builds}/couchbase-server-enterprise_5.5.4-#{vulcan_build_num}-ubuntu16.04_amd64",
+              "centos6"    => "#{vulcan_builds}/couchbase-server-#{edition}-5.5.4-#{vulcan_build_num}-centos6.x86_64",
+              "centos7"    => "#{vulcan_builds}/couchbase-server-#{edition}-5.5.4-#{vulcan_build_num}-centos7.x86_64",
+              "debian8"    => "#{vulcan_builds}/couchbase-server-#{edition}_5.5.4-#{vulcan_build_num}-debian8_amd64",
+              "debian9"    => "#{vulcan_builds}/couchbase-server-#{edition}_5.5.4-#{vulcan_build_num}-debian9_amd64",
+              "opensuse11" => "#{vulcan_builds}/couchbase-server-#{edition}-5.5.4-#{vulcan_build_num}-suse11.x86_64",
+              "opensuse12" => "#{vulcan_builds}/couchbase-server-#{edition}-5.5.4-#{vulcan_build_num}-suse12.x86_64",
+              "ubuntu14"   => "#{vulcan_builds}/couchbase-server-#{edition}_5.5.4-#{vulcan_build_num}-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{vulcan_builds}/couchbase-server-#{edition}_5.5.4-#{vulcan_build_num}-ubuntu16.04_amd64",
   },
   "alice-testing" => {
-              "centos6"    => "#{alice_builds}/couchbase-server-enterprise-6.0.1-#{alice_build_num}-centos6.x86_64",
-              "centos7"    => "#{alice_builds}/couchbase-server-enterprise-6.0.1-#{alice_build_num}-centos7.x86_64",
-              "debian8"    => "#{alice_builds}/couchbase-server-enterprise_6.0.1-#{alice_build_num}-debian8_amd64",
-              "debian9"    => "#{alice_builds}/couchbase-server-enterprise_6.0.1-#{alice_build_num}-debian9_amd64",
-              "opensuse11" => "#{alice_builds}/couchbase-server-enterprise-6.0.1-#{alice_build_num}-suse11.x86_64",
-              "opensuse12" => "#{alice_builds}/couchbase-server-enterprise-6.0.1-#{alice_build_num}-suse12.x86_64",
-              "ubuntu14"   => "#{alice_builds}/couchbase-server-enterprise_6.0.1-#{alice_build_num}-ubuntu14.04_amd64",
-              "ubuntu16"   => "#{alice_builds}/couchbase-server-enterprise_6.0.1-#{alice_build_num}-ubuntu16.04_amd64",
+              "centos6"    => "#{alice_builds}/couchbase-server-#{edition}-6.0.1-#{alice_build_num}-centos6.x86_64",
+              "centos7"    => "#{alice_builds}/couchbase-server-#{edition}-6.0.1-#{alice_build_num}-centos7.x86_64",
+              "debian8"    => "#{alice_builds}/couchbase-server-#{edition}_6.0.1-#{alice_build_num}-debian8_amd64",
+              "debian9"    => "#{alice_builds}/couchbase-server-#{edition}_6.0.1-#{alice_build_num}-debian9_amd64",
+              "opensuse11" => "#{alice_builds}/couchbase-server-#{edition}-6.0.1-#{alice_build_num}-suse11.x86_64",
+              "opensuse12" => "#{alice_builds}/couchbase-server-#{edition}-6.0.1-#{alice_build_num}-suse12.x86_64",
+              "ubuntu14"   => "#{alice_builds}/couchbase-server-#{edition}_6.0.1-#{alice_build_num}-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{alice_builds}/couchbase-server-#{edition}_6.0.1-#{alice_build_num}-ubuntu16.04_amd64",
   },
   "mad-hatter-testing" => {
-              "centos7"    => "#{mad_hatter_builds}/couchbase-server-enterprise-6.5.0-#{mad_hatter_build_num}-centos7.x86_64",
-              "debian8"    => "#{mad_hatter_builds}/couchbase-server-enterprise_6.5.0-#{mad_hatter_build_num}-debian8_amd64",
-              "debian9"    => "#{mad_hatter_builds}/couchbase-server-enterprise_6.5.0-#{mad_hatter_build_num}-debian9_amd64",
-              "opensuse11" => "#{mad_hatter_builds}/couchbase-server-enterprise-6.5.0-#{mad_hatter_build_num}-suse11.x86_64",
-              "opensuse12" => "#{mad_hatter_builds}/couchbase-server-enterprise-6.5.0-#{mad_hatter_build_num}-suse12.x86_64",
-              "ubuntu14"   => "#{mad_hatter_builds}/couchbase-server-enterprise_6.5.0-#{mad_hatter_build_num}-ubuntu14.04_amd64",
-              "ubuntu16"   => "#{mad_hatter_builds}/couchbase-server-enterprise_6.5.0-#{mad_hatter_build_num}-ubuntu16.04_amd64",
+              "centos7"    => "#{mad_hatter_builds}/couchbase-server-#{edition}-6.5.0-#{mad_hatter_build_num}-centos7.x86_64",
+              "debian8"    => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-debian8_amd64",
+              "debian9"    => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-debian9_amd64",
+              "opensuse11" => "#{mad_hatter_builds}/couchbase-server-#{edition}-6.5.0-#{mad_hatter_build_num}-suse11.x86_64",
+              "opensuse12" => "#{mad_hatter_builds}/couchbase-server-#{edition}-6.5.0-#{mad_hatter_build_num}-suse12.x86_64",
+              "ubuntu14"   => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-ubuntu14.04_amd64",
+              "ubuntu16"   => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-ubuntu16.04_amd64",
   },
-  "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-centos6.x86_64",
-  "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-centos7.x86_64",
-  "debian7"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-debian7_amd64",
-  "debian8"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-debian8_amd64",
-  "debian9"    => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-debian9_amd64",
-  "opensuse11" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-suse11.x86_64",
-  "opensuse12" => "#{couchbase_releases}/#{version}/couchbase-server-enterprise-#{version}-suse12.x86_64",
-  "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu12.04_amd64",
-  "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu14.04_amd64",
-  "ubuntu16"   => "#{couchbase_releases}/#{version}/couchbase-server-enterprise_#{version}-ubuntu16.04_amd64",
+  "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos6.x86_64",
+  "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos7.x86_64",
+  "debian7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian7_amd64",
+  "debian8"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian8_amd64",
+  "debian9"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian9_amd64",
+  "opensuse11" => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-suse11.x86_64",
+  "opensuse12" => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-suse12.x86_64",
+  "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu12.04_amd64",
+  "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu14.04_amd64",
+  "ubuntu16"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu16.04_amd64",
 }
 
 default_number_of_nodes = 4
