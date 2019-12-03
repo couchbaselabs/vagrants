@@ -239,6 +239,7 @@ couchbase_download_links = {
 default_number_of_nodes = 4
 default_RAM_in_MB = 1024
 default_number_of_cpus = 1
+default_CPU_cap_in_percent = 100
 
 ## Edit these to allow other machines in your network to access the VMs
 
@@ -283,6 +284,13 @@ else
   if ram_in_MB.nil?
     ram_in_MB = default_RAM_in_MB
   end
+end
+
+
+unless ENV['VAGRANT_CPU'].nil? || ENV['VAGRANT_CPU'] == 0
+  CPU_cap_in_percent = ENV['VAGRANT_CPU'].to_i
+else
+  CPU_cap_in_percent = default_CPU_cap_in_percent
 end
 
 unless ENV['VAGRANT_VPN'].nil?
@@ -336,6 +344,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = num_cpus
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "#{vpn}"]
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "#{CPU_cap_in_percent}"]
     vb.linked_clone = true if Vagrant::VERSION >= "1.8.0"
     vb.destroy_unused_network_interfaces = true
   end
