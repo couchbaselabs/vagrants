@@ -11,7 +11,7 @@ BACKUP_SUFFIX=".bak_$(date +%Y-%m-%dT%H:%M:%S)"
 
 # CB defaults
 CB_INBOX_DIR="/opt/couchbase/var/lib/couchbase/inbox"
-CB_KEY_FILE="${CB_INBOX_DIR}/pkey.pem"
+CB_KEY_FILE="${CB_INBOX_DIR}/pkey.key"
 CB_CHAIN_FILE="${CB_INBOX_DIR}/chain.pem"
 CB_CA_FILE="${CB_INBOX_DIR}/ca.pem"
 CB_USER="couchbase"
