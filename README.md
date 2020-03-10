@@ -12,6 +12,8 @@ internet access.
 
 Additionally, you can specify the number of nodes to provision from the command line by using the environment variable VAGRANT_NODES. For example: `VAGRANT_NODES=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default. `VAGRANT_CPUS` and `VAGRANT_RAM` are also available.
 
+`VAGRANT_GENSSL=1` will trigger [provision-time SSL certificate generation](#ssl-certificates).
+
 ### IP Addresses
 
 Base range:10.xxx.yyy.10n where xxx and yyy are based on the Operating System and Couchbase Server versions, and n is the node number:
@@ -68,6 +70,103 @@ The hostname of the VM will be set based on the version of Couchbase Server and 
 If the user has the *landrush* plugin installed, the TLD will be set to `.vagrants`.  This
 allows the hostname to be queried from both the host and the guests.  For more details
 see the [landrush README](https://github.com/phinze/landrush).
+
+## SSL Certificates
+
+### Generating SSL Certificates
+
+SSL certificates for any node can be generated at provisioning time by toggling on the `VAGRANT_GENSSL` env var:
+
+    VAGRANT_GENSSL=1 vagrant up
+
+By default 2 client certificates are also created once for `cbssl-user1@cb.local` and `cbssl-user2@cb.local`, together with any certificates required for new vagrant nodes.
+
+The server certificates will have SAN addresses for all DNS names, inc FQDN, and all IP addresses.
+
+These will be generated in a "node_ssl" folder, with the following structure:
+
+    node_ssl
+    ├── ca
+    │   ├── ca.key
+    │   ├── ca.pem
+    │   └── serial.srl
+    ├── config.cnf
+    ├── node
+    │   ├── node1-shortname
+    │   │   ├── chain.pem
+    │   │   ├── node1-shortname.csr
+    │   │   └── pkey.key
+    │   ├── node2-shortname
+    │   │   └── ... 3 files
+    │   ├── node3-shortname
+    │   │   └── ... 3 files
+    │   └── node4-shortname
+    │       └── ... 3 files
+    └── user
+        ├── cbssl-user1@cb.local
+        │   ├── cbssl-user1@cb.local.csr
+        │   ├── cbssl-user1@cb.local.key
+        │   └── cbssl-user1@cb.local.pem
+        └── cbssl-user2@cb.local
+            └── ... 3 files
+
+During generation, the node pkey.key, chain.pem, and ca.pem file will be copied to the Couchbase Server `inbox` directory, for easy use later.
+
+### Server SSL Certificates
+
+#### Configuration
+
+Once the cluster is online, the certificates can then be imported with the usual method:
+
+First load the CA certificate on one node.
+Warnings might appear that the old default node certifcates aren't signed by the new CA, this is fine.
+
+From your local machine at the vagrant os-level dir (eg: `vagrants/6.5.0/centos7/`):
+
+    curl -u Administrator -p -X POST --data-binary "@./node_ssl/ca/ca.pem" \
+    http://<NODE ADDRESS>:8091/controller/uploadClusterCA
+
+Then once per-node, reload the new certificate:
+
+    curl -u Administrator -p -X POST \
+    http://<NODE ADDRESS>:8091/node/controller/reloadCertificate
+
+#### Testing
+
+If desired, a server connection can be tested with `openssl` as usual:
+
+    openssl s_client -connect <NODE ADDRESS>:18091 -CAfile node_ssl/ca/ca.pem <<< ""
+    openssl s_client -connect <NODE ADDRESS>:11207 -CAfile node_ssl/ca/ca.pem <<< ""
+
+Just look for `Verify return code: 0 (ok)` towards the end of the output to show the chain is acceptable, given the cluster CA certificate.
+
+### Client SSL Certificates
+
+#### Configuration
+
+An RBAC mapping must be made from the user certificate `Subject.CN` field to Couchbase Server username.
+
+The default client certificate `Subject.CN` are `cbssl-user1@cb.local` and `cbssl-user2@cb.local`.
+This format should be easy to parse in Couchbase Server, allowing different options.
+
+For example:
+
+* Prefix: `cbssl-`
+* Delimiter: `@`
+
+Yields usernames of `user1` and `user2`.
+
+#### Testing
+
+The client certificate can be tested against the cluster with `cbc-pillowfight`.
+From your local machine at the vagrant os-level dir (eg: `vagrants/6.5.0/centos7/`):
+
+    cbc-pillowfight -U "couchbases://<NODE ADDRESS>/<BUCKET NAME>" \
+    --truststorepath="node_ssl/ca/ca.pem" \
+    --keypath="node_ssl/user/cbssl-user1@cb.local/cbssl-user1@cb.local.key" \
+    --certpath="node_ssl/user/cbssl-user1@cb.local/cbssl-user1@cb.local.pem"
+
+---
 
 # Per-box Caching
 

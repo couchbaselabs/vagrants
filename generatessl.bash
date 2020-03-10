@@ -242,13 +242,13 @@ echo
 # Generate CSR including SANs
 echo "Generating Node CSR at '${SSL_NODE_CSR}'"
 openssl req -new -sha256 -key ${SSL_NODE_KEY} -subj "/CN=${DNS_FQDN}" -out ${SSL_NODE_CSR} \
--config <(cat ${SSL_CONFIG} <(printf "${SAN_LIST}"))
+-config <(cat ${SSL_CONFIG} <(printf "\n%s" "basicConstraints=CA:FALSE" "extendedKeyUsage=serverAuth" "${SAN_LIST}"))
 
 # Sign CSR with CA
 echo "Node CSR built at '${SSL_NODE_CSR}', signing certificate with CA"
 openssl x509 -req -in ${SSL_NODE_CSR} -CA ${SSL_CA_CERT} -CAkey ${SSL_CA_KEY} -CAcreateserial -CAserial ${SSL_CA_SERIAL} \
 -out ${SSL_NODE_CHAIN} -days ${SSL_DAYS} -sha256 -extensions req_ext \
--extfile <(cat ${SSL_CONFIG} <(printf "\n%s" "extendedKeyUsage=serverAuth" "${SAN_LIST}"))
+-extfile <(cat ${SSL_CONFIG} <(printf "\n%s" "basicConstraints=CA:FALSE" "extendedKeyUsage=serverAuth" "${SAN_LIST}"))
 
 echo "Certificate build finished for '${DNS_SHORT}'"
 echo
