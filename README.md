@@ -79,7 +79,7 @@ SSL certificates for any node can be generated at provisioning time by toggling 
 
     VAGRANT_GENSSL=1 vagrant up
 
-By default 2 client certificates are also created once for `cbssl-user1@cb.local` and `cbssl-user2@cb.local`, together with any certificates required for new vagrant nodes.
+By default 2 client certificates are also created for `cbssl-user1@cb.local` and `cbssl-user2@cb.local` by the first new node, together with any certificates required for new vagrant nodes.
 
 The server certificates will have SAN addresses for all DNS names, inc FQDN, and all IP addresses.
 
@@ -155,6 +155,7 @@ For example:
 * Delimiter: `@`
 
 Yields usernames of `user1` and `user2`.
+Ensure to set the mapping to enabled, and not mandatory unless wanting to authenticate ALL requests with a certificate.
 
 #### Testing
 
