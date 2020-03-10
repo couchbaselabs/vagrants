@@ -292,6 +292,12 @@ else
   vpn = "off"
 end
 
+unless ENV['VAGRANT_GENSSL'].nil?
+  vm_generate_ssl_cert = true
+else
+  vm_generate_ssl_cert = false
+end
+
 # Check to see if a custom download location has been given, if not use a default value (2.5.0 style)
 unless ENV['VAGRANT_CB_DOWNLOAD'].nil?
   url = ENV['VAGRANT_CB_DOWNLOAD']
@@ -433,6 +439,11 @@ Vagrant.configure("2") do |config|
   if(operating_system.include?("centos7")) # If Centos7 bouncing network because of https://github.com/hashicorp/vagrant/issues/8096
     config.vm.provision "shell", inline: "service network restart", run: "always"
   end
+
+  if(vm_generate_ssl_cert)
+    config.vm.provision "shell", path: "../../generatessl.bash"
+  end
+
 end
 rescue
 end
