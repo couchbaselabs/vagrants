@@ -87,7 +87,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "alice-testing" => 195,
 
   "6.5.0" => 200,
-  "mad-hatter-testing" => 201,
+  "6.5.1" => 201,
+  "mad-hatter-testing" => 202,
 
   "cheshire-cat-testing" => 210,
 
