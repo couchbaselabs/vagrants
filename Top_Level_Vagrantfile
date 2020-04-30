@@ -87,7 +87,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "alice-testing" => 195,
 
   "6.5.0" => 200,
-  "mad-hatter-testing" => 201,
+  "6.5.1" => 201,
+  "mad-hatter-testing" => 202,
 
   "cheshire-cat-testing" => 210,
 
@@ -137,7 +138,7 @@ if edition.nil? || (!['community', 'enterprise'].include? edition)
 end
 
 # Requires VPN
-latest_builds =  "http://172.23.120.24/builds/latestbuilds/couchbase-server"
+latest_builds = "http://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server"
 watson_build_num= "4741"
 watson_builds =  "#{latest_builds}/watson/#{watson_build_num}"
 spock_build_num= "5721"
@@ -148,7 +149,7 @@ alice_build_num= "2037"
 alice_builds =  "#{latest_builds}/alice/#{alice_build_num}"
 mad_hatter_build_num= "4960"
 mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
-cheshire_cat_build_num= "1148"
+cheshire_cat_build_num= "1790"
 cheshire_cat_builds = "#{latest_builds}/cheshire-cat/#{cheshire_cat_build_num}"
 
 couchbase_download_links = {
