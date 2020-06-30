@@ -250,7 +250,7 @@ couchbase_download_links = {
 default_number_of_nodes = 4
 default_RAM_in_MB = 1024
 default_number_of_cpus = 1
-default_CPU_cap_in_percent = 60
+default_CPU_cap_in_percent = 100
 
 ## Edit these to allow other machines in your network to access the VMs
 
