@@ -18,6 +18,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "ubuntu14" => 142,
   "ubuntu16" => 143,
   "ubuntu18" => 144,
+  "ubuntu20" => 145,
   "windows"  => 150,
 
   # Second Octet - CB Version
@@ -92,7 +93,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "6.6.0" => 205,
   "mad-hatter-testing" => 206,
 
-  "cheshire-cat-testing" => 210,
+  "7.0.0-beta" => 210,
+  "cheshire-cat-testing" => 211,
 
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
@@ -103,6 +105,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu14" => "ubuntu/trusty64",
   "ubuntu16" => "puppetlabs/ubuntu-16.04-64-puppet",
   "ubuntu18" => "generic/ubuntu1804",
+  "ubuntu20" => "generic/ubuntu2004",
   "debian7"  => "cargomedia/debian-7-amd64-default",
   "centos5"  => {"box_name" => "centos5u8_x64",
                  "box_url"  => "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
@@ -246,6 +249,7 @@ couchbase_download_links = {
   "ubuntu14"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu14.04_amd64",
   "ubuntu16"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu16.04_amd64",
   "ubuntu18"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu18.04_amd64",
+  "ubuntu20"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu20.04_amd64",
 }
 
 default_number_of_nodes = 4
@@ -376,9 +380,9 @@ Vagrant.configure("2") do |config|
     box_version = vagrant_boxes[operating_system]["box_version"]
   end
 
-  # ubuntu1804 box does not have puppet installed:
-  if(operating_system.include?("ubuntu18"))
-    config.vm.provision "shell", inline: "/vagrant/install-puppet.sh"
+  # ubuntu1804 and 2004 boxes do not have puppet installed:
+  if(operating_system.include?("ubuntu18") || operating_system.include?("ubuntu20"))
+    config.vm.provision "shell", inline: "(apt update && apt install -y puppet) &> /dev/null"
   end
 
   # Check to see if the VM is not running Windows and provision with puppet
