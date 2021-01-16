@@ -156,7 +156,7 @@ alice_build_num= "2037"
 alice_builds =  "#{latest_builds}/alice/#{alice_build_num}"
 mad_hatter_build_num= "4960"
 mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
-cheshire_cat_build_num= "2351"
+cheshire_cat_build_num= "4170"
 cheshire_cat_builds = "#{latest_builds}/cheshire-cat/#{cheshire_cat_build_num}"
 
 couchbase_download_links = {
@@ -236,8 +236,9 @@ couchbase_download_links = {
               "debian9"    => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-debian9_amd64",
               "opensuse11" => "#{cheshire_cat_builds}/couchbase-server-#{edition}-7.0.0-#{cheshire_cat_build_num}-suse11.x86_64",
               "opensuse12" => "#{cheshire_cat_builds}/couchbase-server-#{edition}-7.0.0-#{cheshire_cat_build_num}-suse12.x86_64",
-              "ubuntu14"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu14.04_amd64",
               "ubuntu16"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu16.04_amd64",
+              "ubuntu18"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu18.04_amd64",
+              "ubuntu20"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu20.04_amd64",
   },
   "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos6.x86_64",
   "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos7.x86_64",
