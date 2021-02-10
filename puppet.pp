@@ -97,7 +97,10 @@ package { "libssl":
             '18.04' => "libssl1.0.0",
             '20.04' => "libssl1.1"},
         'CentOS' => "openssl098e",
-        'Debian' => "libssl1.0.0",
+        'Debian' => $::operatingsystemmajrelease ? {
+	    '7' => "libssl1.0.0",
+	    '8' => "libssl1.0.0",
+	    '9' => "libssl1.1"},
         'OpenSuSE' => "openssl",
     },
     ensure => present,
