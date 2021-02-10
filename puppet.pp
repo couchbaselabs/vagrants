@@ -123,5 +123,12 @@ package { "couchbase-server":
 # Ensure the service is running
 service { "couchbase-server":
     ensure => "running",
-    require => Package["couchbase-server"]
+    require => Package["couchbase-server"],
+    before => Exec['usermod'],
+}
+
+# Add vagrant user to the couchbase group
+exec { 'usermod':
+       command => "usermod -a -G couchbase vagrant",
+       path => "/usr/sbin",
 }
