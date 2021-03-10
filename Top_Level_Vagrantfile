@@ -158,7 +158,7 @@ alice_build_num= "2037"
 alice_builds =  "#{latest_builds}/alice/#{alice_build_num}"
 mad_hatter_build_num= "4960"
 mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
-cheshire_cat_build_num= "4502"
+cheshire_cat_build_num= "4617"
 cheshire_cat_builds = "#{latest_builds}/cheshire-cat/#{cheshire_cat_build_num}"
 
 couchbase_download_links = {
