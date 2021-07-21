@@ -132,7 +132,7 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                 },
   "debian8"  => "lazyfrosch/debian-8-jessie-amd64-puppet",
   "debian9"  => "generic/debian9",
-  "debian10" => "generic/debian10",
+  "debian10" => "debian/contrib-buster64",
 }
 
 # Collect the names of the working directory and its parent (os and cb version)
@@ -237,6 +237,7 @@ couchbase_download_links = {
               "centos7"    => "#{mad_hatter_builds}/couchbase-server-#{edition}-6.5.0-#{mad_hatter_build_num}-centos7.x86_64",
               "debian8"    => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-debian8_amd64",
               "debian9"    => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-debian9_amd64",
+              "debian10"   => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-debian10_amd64",
               "opensuse11" => "#{mad_hatter_builds}/couchbase-server-#{edition}-6.5.0-#{mad_hatter_build_num}-suse11.x86_64",
               "opensuse12" => "#{mad_hatter_builds}/couchbase-server-#{edition}-6.5.0-#{mad_hatter_build_num}-suse12.x86_64",
               "ubuntu14"   => "#{mad_hatter_builds}/couchbase-server-#{edition}_6.5.0-#{mad_hatter_build_num}-ubuntu14.04_amd64",
@@ -244,8 +245,8 @@ couchbase_download_links = {
   },
   "cheshire-cat-testing" => {
               "centos7"    => "#{cheshire_cat_builds}/couchbase-server-#{edition}-7.0.0-#{cheshire_cat_build_num}-centos7.x86_64",
-              "debian8"    => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-debian8_amd64",
               "debian9"    => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-debian9_amd64",
+              "debian10"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-debian8_amd64",
               "opensuse11" => "#{cheshire_cat_builds}/couchbase-server-#{edition}-7.0.0-#{cheshire_cat_build_num}-suse11.x86_64",
               "opensuse12" => "#{cheshire_cat_builds}/couchbase-server-#{edition}-7.0.0-#{cheshire_cat_build_num}-suse12.x86_64",
               "ubuntu16"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu16.04_amd64",
@@ -274,6 +275,7 @@ couchbase_download_links = {
   "debian7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian7_amd64",
   "debian8"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian8_amd64",
   "debian9"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian9_amd64",
+  "debian10"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian10_amd64",
   "opensuse11" => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-suse11.x86_64",
   "opensuse12" => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-suse12.x86_64",
   "ubuntu12"   => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-ubuntu12.04_amd64",
@@ -412,7 +414,7 @@ Vagrant.configure("2") do |config|
   end
 
   # ubuntu1804 and 2004 boxes do not have puppet installed:
-  if(operating_system.include?("ubuntu18") || operating_system.include?("ubuntu20") || operating_system.include?("debian9"))
+  if(operating_system.include?("ubuntu18") || operating_system.include?("ubuntu20") || operating_system.include?("debian9") || operating_system.include?("debian10"))
     config.vm.provision "shell", inline: "(apt update && apt install -y puppet) &> /dev/null"
   end
 
