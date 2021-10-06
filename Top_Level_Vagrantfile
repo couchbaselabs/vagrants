@@ -8,7 +8,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "centos5"  => 110,
   "centos6"  => 111,
   "centos7"  => 112,
-  "centos6u4" => 113,
+  "centos8"  => 113,
+  "centos6u4" => 114,
   "debian7"  => 120,
   "debian8"  => 121,
   "debian9"  => 122,
@@ -125,6 +126,8 @@ vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
                  },
   "centos7"  => { "box_name" => "puppetlabs/centos-7.0-64-puppet",
                   "box_version" => "1.0.1"
+                },
+  "centos8"  => { "box_name" => "saphyre/centos-8-puppet-x86_64"
                 },
   "windows"  => "emyl/win2008r2",
   "opensuse11"  => "minesense/opensuse11.1",
@@ -273,6 +276,7 @@ couchbase_download_links = {
   },
   "centos6"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos6.x86_64",
   "centos7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos7.x86_64",
+  "centos8"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}-#{version}-centos8.x86_64",
   "debian7"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian7_amd64",
   "debian8"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian8_amd64",
   "debian9"    => "#{couchbase_releases}/#{version}/couchbase-server-#{edition}_#{version}-debian9_amd64",
