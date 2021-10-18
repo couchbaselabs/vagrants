@@ -99,11 +99,12 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "6.6.3" => 208,
   "mad-hatter-testing" => 209,
 
-  "7.0.0-beta" => 210,
-  "cheshire-cat-testing" => 211,
-  "7.0.0" => 212, 
+  "7.0.0" => 210, 
+  "7.0.1" => 211, 
+  "7.0.2" => 212, 
+  "cheshire-cat-testing" => 213,
 
-  "neo-testing" => 213,
+  "neo-testing" => 220,
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",
@@ -169,8 +170,6 @@ mad_hatter_build_num= "4960"
 mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
 cheshire_cat_build_num= "4735"
 cheshire_cat_builds = "#{latest_builds}/cheshire-cat/#{cheshire_cat_build_num}"
-cc_ga_build_num = "5302"
-cc_ga_builds = "#{latest_builds}/cheshire-cat/#{cc_ga_build_num}"
 neo_build_num= "1055"
 neo_builds = "#{latest_builds}/neo/#{neo_build_num}"
 
@@ -256,15 +255,6 @@ couchbase_download_links = {
               "ubuntu16"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu16.04_amd64",
               "ubuntu18"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu18.04_amd64",
               "ubuntu20"   => "#{cheshire_cat_builds}/couchbase-server-#{edition}_7.0.0-#{cheshire_cat_build_num}-ubuntu20.04_amd64",
-  },
-  "7.0.0" => {
-              "centos7"    => "#{cc_ga_builds}/couchbase-server-#{edition}-7.0.0-#{cc_ga_build_num}-centos7.x86_64",
-              "centos8"    => "#{cc_ga_builds}/couchbase-server-#{edition}-7.0.0-#{cc_ga_build_num}-centos8.x86_64",
-              "debian9"    => "#{cc_ga_builds}/couchbase-server-#{edition}_7.0.0-#{cc_ga_build_num}-debian9_amd64",
-              "debian10"   => "#{cc_ga_builds}/couchbase-server-#{edition}_7.0.0-#{cc_ga_build_num}-debian10_amd64",
-              "opensuse12" => "#{cc_ga_builds}/couchbase-server-#{edition}-7.0.0-#{cc_ga_build_num}-suse12.x86_64",
-              "ubuntu18"   => "#{cc_ga_builds}/couchbase-server-#{edition}_7.0.0-#{cc_ga_build_num}-ubuntu18.04_amd64",
-              "ubuntu20"   => "#{cc_ga_builds}/couchbase-server-#{edition}_7.0.0-#{cc_ga_build_num}-ubuntu20.04_amd64",
   },
   "neo-testing" => {
               "centos7"    => "#{neo_builds}/couchbase-server-#{edition}-7.1.0-#{neo_build_num}-centos7.x86_64",
