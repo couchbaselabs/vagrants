@@ -1,0 +1,4 @@
+# Read and execute the top level Vagrantfile
+Dir.chdir File.dirname(__FILE__)
+external = File.read '../../Top_Level_Vagrantfile'
+eval external
