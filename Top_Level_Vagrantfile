@@ -93,6 +93,7 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
 
   "6.5.0" => 200,
   "6.5.1" => 201,
+  "6.5.2" => 202,
   "6.6.0" => 205,
   "6.6.1" => 206,
   "6.6.2" => 207,
