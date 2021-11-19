@@ -12,6 +12,8 @@ internet access.
 
 Additionally, you can specify the number of nodes to provision from the command line by using the environment variable VAGRANT_NODES. For example: `VAGRANT_NODES=3 vagrant up` will provision a 3 node cluster. If you do not specify a number a 4 node cluster will be created by default. `VAGRANT_CPUS` and `VAGRANT_RAM` are also available.
 
+**Note**: if you are using VirtualBox 6.1.28 on macOS or Linux, you may encounter a `E_ACCESSDENIED` error when starting the nodes. As a workaround, you can create the file `/etc/vbox/networks.conf` containing `* 0.0.0.0/0 ::/0`.
+
 ### IP Addresses
 
 Base range:10.xxx.yyy.10n where xxx and yyy are based on the Operating System and Couchbase Server versions, and n is the node number:
