@@ -174,7 +174,7 @@ mad_hatter_build_num= "4960"
 mad_hatter_builds =  "#{latest_builds}/mad-hatter/#{mad_hatter_build_num}"
 cheshire_cat_build_num= "4735"
 cheshire_cat_builds = "#{latest_builds}/cheshire-cat/#{cheshire_cat_build_num}"
-neo_build_num= "1787"
+neo_build_num= "2179"
 neo_builds = "#{latest_builds}/neo/#{neo_build_num}"
 
 
