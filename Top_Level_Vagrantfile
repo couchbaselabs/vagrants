@@ -98,14 +98,17 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "6.6.1" => 206,
   "6.6.2" => 207,
   "6.6.3" => 208,
-  "mad-hatter-testing" => 209,
+  "6.6.4" => 209,
+  "6.6.5" => 210,
+  "mad-hatter-testing" => 211,
 
-  "7.0.0" => 210, 
-  "7.0.1" => 211, 
-  "7.0.2" => 212, 
-  "cheshire-cat-testing" => 213,
+  "7.0.0" => 220, 
+  "7.0.1" => 221, 
+  "7.0.2" => 222, 
+  "7.0.3" => 223,
+  "cheshire-cat-testing" => 224,
 
-  "neo-testing" => 220,
+  "neo-testing" => 230,
 }
 vagrant_boxes = { # Vagrant Cloud base boxes for each operating system
   "ubuntu10" => {"box_name" => "ubuntu-server-10044-x64-vbox4210",
