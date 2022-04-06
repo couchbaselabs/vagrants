@@ -33,8 +33,18 @@ if $operatingsystem == 'Ubuntu' or $operatingsystem == 'Debian'{
   exec { "apt-get update":
          path => "/usr/bin"
   }
-  notice("Installing XXpython-httplib2 for ${operatingsystem} ${operatingsystemrelease}")
-  package { "python-httplib2":
+  $httplib_package = $lsbdistcodename ? {
+    'bullseye' => 'python3-httplib2',
+    default    => 'python-httplib2'
+  }
+  notice("Installing ${httplib_package} for ${operatingsystem} ${operatingsystemrelease}")
+  package { $httplib_package:
+    ensure => present,
+    before => Package["couchbase-server"]
+  }
+  # not all versions of Ubuntu ship with it
+  notice("Installing libtinfo5 for ${operatingsystem} ${operatingsystemrelease}")
+  package { "libtinfo5":
     ensure => present,
     before => Package["couchbase-server"]
   }
@@ -105,7 +115,8 @@ package { "libssl":
 	    '7' => "libssl1.0.0",
 	    '8' => "libssl1.0.0",
 	    '9' => "libssl1.1",
-	    '10' => "libssl1.1"},
+	    '10' => "libssl1.1",
+      '11' => "libssl1.1"},
         'OpenSuSE' => "openssl",
     },
     ensure => present,
