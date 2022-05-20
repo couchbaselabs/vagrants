@@ -109,7 +109,8 @@ ip_addresses = { # Values for both OS's and Couchbase versions that are cat'd to
   "7.0.3" => 223,
   "cheshire-cat-testing" => 224,
 
-  "neo-testing" => 230,
+  "7.1.0" => 230,
+  "neo-testing" => 231,
 
   "morpheus-testing" => 240,
 }
